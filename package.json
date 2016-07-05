@@ -1,0 +1,28 @@
+{
+  "name": "github-csv-tools",
+  "version": "0.1.0",
+  "description": "Tools to import and export, via CSV, from GitHub.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "githubCsvTools": "./index.js"
+  },
+  "keywords": [
+    "github",
+    "csv",
+    "import",
+    "export"
+  ],
+  "repository": "https://github.com/gavinr/github-csv-tools.git",
+  "author": "Gavin Rehkemper <gavin@gavinr.com> (http://gavinr.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "co": "^4.6.0",
+    "co-prompt": "^1.0.0",
+    "commander": "^2.9.0",
+    "csv": "^0.4.6",
+    "github": "^0.2.4"
+  }
+}
