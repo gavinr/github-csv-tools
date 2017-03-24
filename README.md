@@ -1,12 +1,12 @@
 # github-csv-tools
 Tools for importing GitHub Issues via CSV. (Exporting to come soon?)
 
-Currently imports title, description, and labels.
+Currently imports title, description, labels, and milestones.
 
 ## Usage
 
  1. `npm install -g github-csv-tools`
- 2. `githubCsvTools myFile.csv` 
+ 2. `githubCsvTools myFile.csv`
 
 `githubCsvTools --help` for info on how to use the command line tool
 
