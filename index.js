@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* jshint esversion: 6 */
 
 const program = require('commander');
 const co = require('co');
@@ -6,6 +7,7 @@ const prompt = require('co-prompt');
 const GitHubApi = require('github');
 const csv = require('csv');
 const fs = require('fs');
+const Bottleneck = require("bottleneck");
 
 program
     .version('0.1.0')
@@ -31,6 +33,11 @@ program
                     'user-agent': 'My-Cool-GitHub-App' // GitHub is happy with a unique user agent
                 }
             });
+
+            // abuse rate limits apply for concurrent content creation
+            // requests by a single GitHub user.
+            var limiter = new Bottleneck(20,200);
+
             // OAuth2
             github.authenticate({
                 type: "oauth",
@@ -53,6 +60,7 @@ program
                     var titleIndex = cols.indexOf('title');
                     var bodyIndex = cols.indexOf('description');
                     var labelsIndex = cols.indexOf('labels');
+                    var milestoneIndex = cols.indexOf('milestone');
 
                     if (titleIndex === -1) {
                         console.error('Title required by GitHub, but not found in CSV.');
@@ -71,14 +79,21 @@ program
                         }
 
                         // if we have a labels column, pass that.
-                        if (labelsIndex > -1) {
-                            sendObj.labels = row[labelsIndex].split(',');
+                        if (labelsIndex > -1 && row[labelsIndex] !== '') {
+                              sendObj.labels = row[labelsIndex].split(',');
                         }
 
-                        github.issues.create(sendObj, function(err, res)
+                        // if we have a milestone column, pass that.
+                        if (milestoneIndex > -1 && row[milestoneIndex] !== '') {
+                            sendObj.milestone = row[milestoneIndex];
+                        }
+
+                        limiter.submit(github.issues.create,sendObj, function(err, res)
                         {
                             // debugging: console.log(JSON.stringify(res));
-                            process.exit(0);
+                            if (limiter.nbQueued() === 0) {
+                              process.exit(0);
+                            }
                         });
                     });
                 });
