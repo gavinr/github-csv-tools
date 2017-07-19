@@ -1,1 +1,10 @@
 language: node_js
+
+node_js:
+  - '6'
+
+install:
+  - npm install
+
+before_script:
+  - npm test
