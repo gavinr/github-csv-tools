@@ -7,7 +7,7 @@ const prompt = require('co-prompt');
 const GitHubApi = require('github');
 const csv = require('csv');
 const fs = require('fs');
-const Bottleneck = require("bottleneck");
+const Bottleneck = require('bottleneck');
 
 program
     .version('0.2.0')
@@ -17,12 +17,12 @@ program
     .action(function(file, options) {
         co(function*() {
             var retObject = {};
-            retObject.githubUrl = options.github_enterprise || "github.com";
+            retObject.githubUrl = options.github_enterprise || 'github.com';
             if (retObject.githubUrl != 'github.com') {
-              retObject.pathPrefix = "/api/v3"
+              retObject.pathPrefix = '/api/v3'
             }
-            retObject.token = options.token || "";
-            if (retObject.token == "") {
+            retObject.token = options.token || '';
+            if (retObject.token == '') {
               retObject.token = yield prompt('token (get from https://' + retObject.githubUrl + '/settings/tokens): ');
             };
             retObject.userOrOrganization = yield prompt('user or organization: ');
@@ -49,7 +49,7 @@ program
             
             // OAuth2
             github.authenticate({
-                type: "oauth",
+                type: 'oauth',
                 token: values.token
             });
 
@@ -108,10 +108,10 @@ program
                         limiter.submit(github.issues.create,sendObj, function(err, res) {
                             // Debugging console.log(JSON.stringify(res));
                             if (err) {console.error('ERROR', err)} else {
-                              console.log("===> Created issue #"  + res.number)
+                              console.log('===> Created issue #'  + res.number)
                               // if we have a state column and state=closed, close the issue
                               if (stateIndex > -1 && row[stateIndex] == 'closed') {
-                                console.log("===> Closing issue #" + res.number);
+                                console.log('===> Closing issue #' + res.number);
                                 var updateIssue = {
                                     user: values.userOrOrganization,
                                     repo: values.repo,
