@@ -10,13 +10,21 @@ const fs = require('fs');
 const Bottleneck = require("bottleneck");
 
 program
-    .version('0.1.0')
+    .version('0.2.0')
     .arguments('<file>')
-    .option('-t, --token <token>', 'The GitHub token. https://github.com/settings/tokens')
-    .action(function(file) {
+    .option('--github_enterprise [github.my-company.com]')
+    .option('--token [token]', 'The GitHub token. https://github.com/settings/tokens')
+    .action(function(file, options) {
         co(function*() {
             var retObject = {};
-            retObject.token = yield prompt('token (get from https://github.com/settings/tokens): ');
+            retObject.githubUrl = options.github_enterprise || "github.com";
+            if (retObject.githubUrl != 'github.com') {
+              retObject.pathPrefix = "/api/v3"
+            }
+            retObject.token = options.token || "";
+            if (retObject.token == "") {
+              retObject.token = yield prompt('token (get from https://' + retObject.githubUrl + '/settings/tokens): ');
+            };
             retObject.userOrOrganization = yield prompt('user or organization: ');
             retObject.repo = yield prompt('repo: ');
             return retObject;
@@ -25,9 +33,10 @@ program
                 // required
                 version: '3.0.0',
                 // optional
+                pathPrefix: values.pathPrefix, 
                 debug: true,
                 protocol: 'https',
-                host: 'api.github.com',
+                host: values.githubUrl,
                 timeout: 5000,
                 headers: {
                     'user-agent': 'My-Cool-GitHub-App' // GitHub is happy with a unique user agent
