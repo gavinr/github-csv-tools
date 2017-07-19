@@ -17,8 +17,8 @@ program
     .action(function(file, options) {
         co(function*() {
             var retObject = {};
-            retObject.githubUrl = options.github_enterprise || 'github.com';
-            if (retObject.githubUrl != 'github.com') {
+            retObject.githubUrl = options.github_enterprise || 'api.github.com';
+            if (retObject.githubUrl != 'api.github.com') {
               retObject.pathPrefix = '/api/v3'
             }
             retObject.token = options.token || '';
