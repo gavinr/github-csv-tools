@@ -71,6 +71,8 @@ program
                     var labelsIndex = cols.indexOf('labels');
                     var milestoneIndex = cols.indexOf('milestone');
                     var assigneeIndex = cols.indexOf('assignee');
+                    var stateIndex = cols.indexOf('state');
+                    var issueNumber = 0;
 
                     if (titleIndex === -1) {
                         console.error('Title required by GitHub, but not found in CSV.');
@@ -102,12 +104,32 @@ program
                         if (assigneeIndex > -1 && row[assigneeIndex] !== '') {
                             sendObj.assignee = row[assigneeIndex];
                         }
-
-                        limiter.submit(github.issues.create,sendObj, function(err, res)
-                        {
-                            // debugging: console.log(JSON.stringify(res));
-                            if (limiter.nbQueued() === 0) {
-                              process.exit(0);
+                        
+                        limiter.submit(github.issues.create,sendObj, function(err, res) {
+                            // Debugging console.log(JSON.stringify(res));
+                            if (err) {console.error('ERROR', err)} else {
+                              console.log("===> Created issue #"  + res.number)
+                              // if we have a state column and state=closed, close the issue
+                              if (stateIndex > -1 && row[stateIndex] == 'closed') {
+                                console.log("===> Closing issue #" + res.number);
+                                var updateIssue = {
+                                    user: values.userOrOrganization,
+                                    repo: values.repo,
+                                    number: res.number,
+                                    state: row[stateIndex]
+                                };
+                                limiter.submit(github.issues.edit, updateIssue, function(err,res) {
+                                  // Debugging console.log(JSON.stringify(res));
+                                  if (err) {console.error('ERROR', err)};
+                                  if (limiter.nbQueued() === 0 && limiter.nbRunning() === 0) {
+                                    process.exit(0);
+                                  }
+                                });
+                              } else {
+                                if (limiter.nbQueued() === 0 && limiter.nbRunning() === 0) {
+                                  process.exit(0);
+                                }
+                              }
                             }
                         });
                     });
