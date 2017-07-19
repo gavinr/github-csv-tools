@@ -70,6 +70,7 @@ program
                     var bodyIndex = cols.indexOf('description');
                     var labelsIndex = cols.indexOf('labels');
                     var milestoneIndex = cols.indexOf('milestone');
+                    var assigneeIndex = cols.indexOf('assignee');
 
                     if (titleIndex === -1) {
                         console.error('Title required by GitHub, but not found in CSV.');
@@ -95,6 +96,11 @@ program
                         // if we have a milestone column, pass that.
                         if (milestoneIndex > -1 && row[milestoneIndex] !== '') {
                             sendObj.milestone = row[milestoneIndex];
+                        }
+                        
+                        // if we have an assignee column, pass that.
+                        if (assigneeIndex > -1 && row[assigneeIndex] !== '') {
+                            sendObj.assignee = row[assigneeIndex];
                         }
 
                         limiter.submit(github.issues.create,sendObj, function(err, res)
