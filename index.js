@@ -45,8 +45,8 @@ program
 
             // abuse rate limits apply for concurrent content creation
             // requests by a single GitHub user.
-            var limiter = new Bottleneck(20,200);
-
+            var limiter = new Bottleneck(5,500);
+            
             // OAuth2
             github.authenticate({
                 type: "oauth",
