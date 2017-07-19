@@ -10,9 +10,9 @@ const fs = require('fs');
 const Bottleneck = require('bottleneck');
 
 program
-    .version('0.2.0')
+    .version('0.1.0')
     .arguments('<file>')
-    .option('--github_enterprise [github.my-company.com]')
+    .option('--github_enterprise [github.my-company.com]', 'Your GitHub Enterprise URL.')
     .option('--token [token]', 'The GitHub token. https://github.com/settings/tokens')
     .action(function(file, options) {
         co(function*() {
