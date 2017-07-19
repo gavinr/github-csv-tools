@@ -4,7 +4,7 @@
   "description": "Tools to import and export, via CSV, from GitHub.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/eslint *.js"
   },
   "bin": {
     "githubCsvTools": "./index.js"
@@ -25,5 +25,13 @@
     "commander": "^2.9.0",
     "csv": "^0.4.6",
     "github": "^0.2.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
