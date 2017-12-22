@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.0] - 2017-12-22
+### Changed
+- Re-publishing to NPM with `LF` line endings instead of `CRLF`
+
+
 ## [0.2.0] - 2017-07-19
 ### Added
 - Support for Hosted Github (See `--github_enterprise` commandline switch)
@@ -23,4 +28,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - A few basic tests
 
 [Unreleased]: https://github.com/gavinr/github-csv-tools/compare/v0.2.0...HEAD
+[0.3.0]: https://github.com/gavinr/github-csv-tools/compare/v0.2.0...0.3.0
 [0.2.0]: https://github.com/gavinr/github-csv-tools/compare/v0.1.0...0.2.0
