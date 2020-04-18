@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   - `pathPrefix` no longer supported
   - Send full URL in for `github_enterprise` (if not sent, will use `https://api.github.com` by default)
 - `bottleneck` package is no longer used in favor of `@octokit/plugin-throttling`
+- Supporting current and LTS versions of Node.js.
 
 ## [0.3.0] - 2017-12-22
 ### Changed
