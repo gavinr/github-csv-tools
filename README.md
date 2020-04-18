@@ -21,7 +21,7 @@ See [CHANGELOG.md](https://github.com/gavinr/github-csv-tools/blob/master/CHANGE
 
 ## Thanks
 
-- [github package](https://www.npmjs.com/package/github)
+- [octokit/rest.js](https://octokit.github.io/rest.js/)
 - [nodeCSV](https://www.npmjs.com/package/csv)
 - [commander](https://www.npmjs.com/package/commander)
 - [co](https://www.npmjs.com/package/co)
