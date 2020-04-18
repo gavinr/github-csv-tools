@@ -4,6 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.0] - 2020-04-18
+
+## Changed
+- Updated to `octokit/rest.js` v17
+  - `pathPrefix` no longer supported
+  - Send full URL in for `github_enterprise` (if not sent, will use `https://api.github.com` by default)
+- `bottleneck` package is no longer used in favor of `@octokit/plugin-throttling`
+- Supporting current and LTS versions of Node.js.
+
 ## [0.3.0] - 2017-12-22
 ### Changed
 - Re-publishing to NPM with `LF` line endings instead of `CRLF`
@@ -27,6 +36,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Basic CSV import functionality.
 - A few basic tests
 
-[Unreleased]: https://github.com/gavinr/github-csv-tools/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/gavinr/github-csv-tools/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/gavinr/github-csv-tools/compare/v0.3.0...0.4.0
 [0.3.0]: https://github.com/gavinr/github-csv-tools/compare/v0.2.0...0.3.0
 [0.2.0]: https://github.com/gavinr/github-csv-tools/compare/v0.1.0...0.2.0
