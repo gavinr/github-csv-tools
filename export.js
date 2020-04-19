@@ -25,32 +25,26 @@ const getComment = async (octokit, values, issueNumber) => {
 // Given the full list of issues, returns back an array of all comments,
 // each with the issue data also included.
 const getFullCommentData = async (octokit, values, data) => {
-  return new Promise(async (resolve, reject) => {
-    const fullComments = [];
-    for (let i = 0; i < data.length; i++) {
-      const issueObject = data[i];
+  const fullComments = [];
+  for (let i = 0; i < data.length; i++) {
+    const issueObject = data[i];
+    fullComments.push({
+      issue: issueObject,
+    });
+    const commentsData = await getComment(octokit, values, issueObject.number);
+    commentsData.forEach((comment) => {
       fullComments.push({
         issue: issueObject,
+        comment: {
+          user: comment.user.login,
+          created_at: comment.created_at,
+          updated_at: comment.updated_at,
+          body: comment.body,
+        },
       });
-      const commentsData = await getComment(
-        octokit,
-        values,
-        issueObject.number
-      );
-      commentsData.forEach((comment) => {
-        fullComments.push({
-          issue: issueObject,
-          comment: {
-            user: comment.user.login,
-            created_at: comment.created_at,
-            updated_at: comment.updated_at,
-            body: comment.body,
-          },
-        });
-      });
-    }
-    resolve(fullComments);
-  });
+    });
+  }
+  return fullComments;
 };
 
 const twoPadNumber = (number) => {
@@ -132,6 +126,10 @@ const exportIssues = (octokit, values, includeComments = false) => {
       }
 
       converter.json2csv(csvData, (err, csvString) => {
+        if (err) {
+          console.error("error converting!");
+          process.exit(0);
+        }
         // console.log("csvString:", csvString);
         const now = new Date();
         let fileName = `${now.getFullYear()}-${twoPadNumber(
