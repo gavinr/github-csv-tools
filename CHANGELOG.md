@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.0] - 2020-04-18
+
+## Added
+- Exporting issues is now supported. Just call `githubCsvTools` with no file input. See `githubCsvTools --help` for more info.
+
 ## [0.4.0] - 2020-04-18
 
 ## Changed
@@ -36,7 +41,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Basic CSV import functionality.
 - A few basic tests
 
-[Unreleased]: https://github.com/gavinr/github-csv-tools/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/gavinr/github-csv-tools/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/gavinr/github-csv-tools/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/gavinr/github-csv-tools/compare/V0.3.0...v0.4.0
 [0.3.0]: https://github.com/gavinr/github-csv-tools/compare/v0.2.0...V0.3.0
 [0.2.0]: https://github.com/gavinr/github-csv-tools/compare/v0.1.0...v0.2.0

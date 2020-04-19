@@ -5,10 +5,26 @@ Currently imports title, description, labels, and milestones.
 
 ## Usage
 
- 1. `npm install -g github-csv-tools`
- 2. `githubCsvTools myFile.csv`
+`githubCsvTools --help` for info on how to use the command line tool. 
 
-`githubCsvTools --help` for info on how to use the command line tool
+First run `npm install -g github-csv-tools` to install. Then:
+
+### To Import Issues
+
+`githubCsvTools myFile.csv`
+
+### To Export Issues
+
+`githubCsvTools`
+
+### Tokens
+
+For all actions, you'll need a GitHub token:
+
+1. Go to https://github.com/settings/tokens
+2. Click "Generate New Token"
+3. Check on `repo`
+4. Copy the token provided - this tool will ask for it.
 
 ## Development
 
