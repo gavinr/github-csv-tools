@@ -7,15 +7,25 @@ Currently imports title, description, labels, and milestones.
 
 `githubCsvTools --help` for info on how to use the command line tool. 
 
-First run `npm install -g github-csv-tools` to install. Then:
+First run this to install:
+
+```
+npm install -g github-csv-tools
+```
+
+Then either export or import:
 
 ### To Import Issues
 
-`githubCsvTools myFile.csv`
+```
+githubCsvTools myFile.csv
+```
 
 ### To Export Issues
 
-`githubCsvTools`
+```
+githubCsvTools
+```
 
 ### Tokens
 
