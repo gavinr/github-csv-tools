@@ -1,4 +1,4 @@
-# github-csv-tools [![Build Status](https://travis-ci.org/gavinr/github-csv-tools.svg?branch=master)](https://travis-ci.org/gavinr/github-csv-tools)
+# GitHub CSV Tools [![Build Status](https://travis-ci.org/gavinr/github-csv-tools.svg?branch=master)](https://travis-ci.org/gavinr/github-csv-tools)
 Tools for importing GitHub Issues via CSV. (Exporting to come soon?)
 
 Currently imports title, description, labels, and milestones.
