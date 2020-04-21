@@ -30,12 +30,12 @@ githubCsvTools
 
 ### Tokens
 
-For all actions, you'll need a GitHub token:
+For all actions, the tool will ask you to input a GitHub token. To obtain this token:
 
 1. Go to https://github.com/settings/tokens
 2. Click "Generate New Token"
 3. Check on `repo`
-4. Copy the token provided - this tool will ask for it.
+4. Copy/paste the token provided when the tool asks for it.
 
 ## Development
 
