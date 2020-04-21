@@ -1,21 +1,22 @@
 # GitHub CSV Tools [![Build Status](https://travis-ci.org/gavinr/github-csv-tools.svg?branch=master)](https://travis-ci.org/gavinr/github-csv-tools)
-Tools for importing GitHub Issues via CSV. (Exporting to come soon?)
-
-Currently imports title, description, labels, and milestones.
+Import and export GitHub issues via CSV
 
 ## Usage
 
-`githubCsvTools --help` for info on how to use the command line tool. 
 
-First run this to install:
+Prerequisite: [Install Node.js](https://nodejs.org/en/), then run this to install:
 
 ```
 npm install -g github-csv-tools
 ```
 
-Then either export or import:
+After install, `githubCsvTools --help` for info on how to use, or see below.
+
+Instructions for exporting or importing:
 
 ### To Import Issues
+
+Currently imports title, description, labels, status (closed or open) and milestones.
 
 ```
 githubCsvTools myFile.csv
