@@ -121,7 +121,7 @@ const exportIssues = (octokit, values, includeComments = false) => {
         // console.log("csvString:", csvString);
         const now = new Date();
         let fileName = `${now.getFullYear()}-${twoPadNumber(
-          now.getMonth()
+          now.getMonth() + 1
         )}-${twoPadNumber(now.getDate())}-${twoPadNumber(
           now.getHours()
         )}-${twoPadNumber(now.getMinutes())}-${twoPadNumber(
