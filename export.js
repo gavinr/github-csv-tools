@@ -85,40 +85,28 @@ const exportIssues = (octokit, values, includeComments = false) => {
       });
 
       // Data from the API that we're removing:
-      const columnsToRemove = [
-        "url",
-        "repository_url",
-        "labels_url",
-        "comments_url",
-        "events_url",
-        "html_url",
-        "id",
-        "node_id",
-        // "number",
-        // "title",
-
-        // "labels",
-        // "state",
-        "locked",
-        "assignee",
-        // "assignees",
-        // "milestone",
-        // "comments",
-        // "created_at",
-        // "updated_at",
-        // "closed_at",
-        "author_association",
-        "body",
-        "pull_request",
+      const defaultColumns = values.exportAttributes || [
+        "number",
+        "title",
+        "labels",
+        "state",
+        "assignees",
         "milestone",
+        "comments",
+        "created_at",
+        "updated_at",
+        "closed_at",
+        "body",
       ];
-      data.forEach((issueObject) => {
-        columnsToRemove.forEach((param) => {
-          delete issueObject[param];
+      const filteredData = data.map((issueObject) => {
+        const tempObject = {};
+        defaultColumns.forEach((propertyName) => {
+          tempObject[propertyName] = issueObject[propertyName];
         });
+        return tempObject;
       });
 
-      let csvData = data;
+      let csvData = filteredData;
       if (values.exportComments === true) {
         // If we want comments, replace the data that will get pushed into
         // the CSV with our full comments data:

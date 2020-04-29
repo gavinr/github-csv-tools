@@ -11,7 +11,7 @@ const { importFile } = require("./import.js");
 const { exportIssues } = require("./export.js");
 
 program
-  .version("1.0.0")
+  .version("1.0.2")
   .arguments("[file]")
   .option(
     "-g, --github_enterprise [https://api.github.my-company.com]",
@@ -24,6 +24,10 @@ program
   .option(
     "-f, --exportFileName [export.csv]",
     "The name of the CSV you'd like to export to."
+  )
+  .option(
+    "-a, --exportAttributes [attributes]",
+    "Comma-separated list of attributes (columns) in the export."
   )
   .option("-c, --exportComments", "Include comments in the export.")
   .action(function (file, options) {
@@ -38,6 +42,12 @@ program
         );
       }
       retObject.exportFileName = options.exportFileName || false;
+      retObject.exportAttributes = options.exportAttributes || false;
+      if (retObject.exportAttributes) {
+        retObject.exportAttributes = retObject.exportAttributes
+          .split(",")
+          .map((i) => i.trim());
+      }
       retObject.exportComments = options.exportComments || false;
       retObject.userOrOrganization = yield prompt("user or organization: ");
       retObject.repo = yield prompt("repo: ");
