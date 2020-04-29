@@ -28,11 +28,11 @@ githubCsvTools myFile.csv
 githubCsvTools
 ```
 
-| Option                 | Default                                                                                     | Notes                                                         |
-| ---------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| -f, --exportFileName   | YYYY-MM-DD-hh-mm-ss-issues.csv                                                              | The name of the CSV you'd like to export to.                  |
-| -a, --exportAttributes | number,title,labels,state,assignees,milestone,comments,created_at,updated_at,closed_at,body | Comma-separated list of attributes (columns) in the export**. |
-| -c, --exportComments   | n/a                                                                                         | Include comments in the export.                               |
+| Option                 | Default                                                                                               | Notes                                                         |
+| ---------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| -f, --exportFileName   | YYYY-MM-DD-hh-mm-ss-issues.csv                                                                        | The name of the CSV you'd like to export to.                  |
+| -a, --exportAttributes | number, title, labels, state, assignees, milestone, comments, created_at, updated_at, closed_at, body | Comma-separated list of attributes (columns) in the export**. |
+| -c, --exportComments   | n/a                                                                                                   | Include comments in the export.                               |
 
 ** List of all possible options for `exportAttributes`: `url`, `repository_url`, `labels_url`, `comments_url`, `events_url`, `html_url`, `id`, `node_id`, `number`, `title`, `user`, `labels`, `state`, `locked`, `assignee`, `assignees`, `milestone`, `comments`, `created_at`, `updated_at`, `closed_at`, `author_association`, `body` ([more info](https://developer.github.com/v3/issues/#get-an-issue))
 
