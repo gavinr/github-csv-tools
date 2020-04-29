@@ -13,7 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Changed
 
 - `body` (initial issue text) is now included in the export by default ([#14](https://github.com/gavinr/github-csv-tools/issues/14))
-- Update dependencies (9ab2b1e47a7c7fa40149a36af03625d80738f887)
+- [Update dependencies](https://github.com/gavinr/github-csv-tools/commit/9ab2b1e47a7c7fa40149a36af03625d80738f887)
 
 ## [1.0.1] - 2020-04-21
 
