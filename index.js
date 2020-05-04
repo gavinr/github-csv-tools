@@ -11,7 +11,7 @@ const { importFile } = require("./import.js");
 const { exportIssues } = require("./export.js");
 
 program
-  .version("1.0.2")
+  .version("1.0.3")
   .arguments("[file]")
   .option(
     "-g, --github_enterprise [https://api.github.my-company.com]",
