@@ -1,0 +1,313 @@
+title,Issue key,Issue id,Parent id,labels,Status,Project key,Project name,Project type,Project lead,Project description,Project url,Priority,Resolution,Assignee,Reporter,Creator,Created,Updated,Last Viewed,Resolved,Due Date,Votes,description,Environment,Watchers,Watchers,Original Estimate,Remaining Estimate,Time Spent,Work Ratio,Σ Original Estimate,Σ Remaining Estimate,Σ Time Spent,Security Level,Outward issue link (Relates),Outward issue link (Relates),Outward issue link (Relates),Outward issue link (Relates),Outward issue link (Relates),Attachment,Attachment,Custom field (Baseline end date),Custom field (Baseline start date),Custom field (Begin Date),Custom field (Conditions),Custom field (Cucumber Scenario),Custom field (Cucumber Test Type),Custom field (End Date),Custom field (End date),Custom field (Epic Color),Custom field (Epic Link),Custom field (Epic Name),Custom field (Epic Status),Custom field (Generic Test Definition),Custom field (Manual Test Steps),Custom field (Manual Test Steps (Export)),Custom field (Pre-Condition Type),Custom field (Rank),Custom field (Revision),Sprint,Custom field (Start date),Custom field (Steps Count),Custom field (Story Points),Custom field (Task mode),Custom field (Task progress),Custom field (Test Count),Custom field (Test Execution Status),Custom field (Test Plan Status),Custom field (Test Repository Path),Custom field (Test Set Status),Custom field (Test Type),Custom field (TestRunStatus),Comment
+Video Section,AFS-8,10007,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,arvindn,arvindn,08/06/20 21:35,12/06/20 14:34,12/06/20 21:44,,,0,"Loads the video using the Video Player.
+ Video can be played, paused and also notes can be added at specific time, where cue point will also be shown.
+ 1) Creating a Note.
+ 2) Viewing the cue point and its note data at the created time.
+ 3) On the create of a Cue Point, Guidance Component to be shown and at the same time, cue note data to be shown.
+ 4) On video complete, next resource to be loaded and if not present within the same TQ, the first resource from the next TQ to be shown
+
+5) On reaching a cue point video will be paused.
+
+ ",,arvindn,ashokp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0001b:,,,,,,,,,"{""issueId"":10007,""testStatuses"":[]}",,,,,,"09/Jun/20 5:05 PM;ashokp;[~arvindn] : We would require more info like when the video will get paused, when it will resume,  autoplay etc in the acceptance criteria. "
+Marks to be present at Question level,AFS-61,10163,,Task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,12/06/20 13:55,12/06/20 13:55,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i000dj:,,Authoring_Tool,,,,,,,"{""issueId"":10163,""testStatuses"":[]}",,,,,,
+Revise from Browse Books,AFS-2,10001,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,prodadmin,arvindn,arvindn,08/06/20 20:36,12/06/20 13:55,12/06/20 21:45,,,0,"As a student, I have chosen to revise a topic on my own outside of the study plan, because
+ * I don't have an active study plan; or
+ * this topic is included in my study plan; or
+ * this topic has not yet been scheduled in my study plan; or
+ * I don't want to bother looking for it in the study plan.
+
+*Navigation:* Refer to attached Revise_Workflow_BBandMyLessons.pdf 
+
+*Rules:*
+ * Lesson status is managed individually within Browse Books and subsequently for each Study Plan.
+ ** *Condition 1:* Lesson never started or Abandoned without completing - Student start from Step #1
+ ** *Condition 2:* Lesson previously completed - Student starts from Step #10
+
+*Acceptance Criteria*
+ # Student lands on lesson overview page which contains
+ ** Lesson Objectives - NOT AVAILABLE as it is not relevant here
+ ** List of TQ's
+ *** Status of each TQ = Not Started
+ ** CTAs:
+ *** +Begin Revision+ (continues to #3)
+ *** +Return to Bookshelf+ (aborts with Lesson Status = Last Available State)
+ # Student selects +Begin Revision+ 
+ # *TQVideo*: Student is taken to the first TQ Video which starts automatically.
+ ** Video: Student can use basic controls to play/pause and navigate up and down the video as desired.
+ ** Cue Points: Student can view all cue points associated with the Video
+ ** Notes: Student can view all Notes created by him/her for the video anytime and in any study plan
+ ** Completion Criteria: Video will be marked ""Done"" upon loading.
+ # *Revise Quiz*: Student can view all available questions in the TQ Quiz in default (unanswered) mode. These are not mandatory. 
+ ** Once attempted, attempt state will be maintained, within the Revise session, in case the student decides to return to a question.
+ ** Completion Criteria: Question will be marked ""Done"" upon loading.
+ ** If not available, this feature will be skipped.
+ # *Summary*: Student goes through all available summary cards for the TQ.
+ ** Completion Criteria: Cards will marked ""Done"" upon loading.
+ ** If not available, this feature will be skipped.
+ # Student will have to go through All TQ's to complete Revision.
+ # Revise resources will be unlocked sequentially upon completion (marked as ""Done"") of previous resource.
+ # *Revise Navigator:* Student has quick access to the Revise Navigator at all times during the Revision
+ ** Revise Navigator contains the following information:
+ *** TQ title
+ **** TQ Status - Locked, Not Done, Done
+ *** TQ resources (Video, Quiz, Summary), as available
+ **** Resource status - Locked, Not Done, Done
+ *** Count of Notes created by the student across all videos in Revise.
+ ** Student can return to a ""Done"" resource by clicking/tapping on it on the Revise Navigator.
+ # Notes creation/management
+ ** Student can create a note at any point in a video.
+ ** The new note will be bookmarked to the position in the video.
+ ** Refer to other Notes behaviour in NOTES COMPONENT STORY
+ # Upon completing the last resource, student will be taken to a Lesson Summary Page which contains:
+ ** List of TQ's
+ *** Status of each TQ = Not Started
+ ** CTAs:
+ *** +Revise Again+ (restarts lesson)
+ *** +Begin Practice+ (starts next lesson)
+ *** +Return to Bookshelf+
+ ** Completion Criteria: Revise will be marked ""Completed"" on loading this page. This will be retained as the last completed state for the browse books, in case the student decides to revise this lesson multiple times.
+
+-----ORIGINAL STORY-------
+
+As a student, I don’t want to bother creating a study plan, and I prefer to revise topics as per my requirements and convenience.
+
++*States to be shown in Lesson Intro Screen:*+
+ * Not started - Then the Resource listing will show no progress
+ * Started but not completed - The Resource listing will show progress , if questions have been answered correctly or else there will be no progress.
+ * Completed - If all the questions are answered correctly, then the revise will be shown complete in the Summary as well as the resource listing page Behaviours
+
+*+Acceptance Criteria:+*
+ * On Click on goto revise button, user to navigate to Lesson Intro section. Intro Screen will consist of:
+ ** Lesson Overview
+ ** Lesson Control
+ * User can add a note while watching the video.
+ * Notes can be Created/ Edited or deleted.
+ * On click on Lesson control Component, user to navigate to Video page and watch the video. Questions to be answered whenever it's displayed.
+ * Video to show Cue point and its data embedded which was created in Notes.
+ * End of Revision , questions will be provided to the user.
+ * After the questions are completed, summary to be shown. User can restart the questions or go to next resource.
+ * On completion of 1 TQ, next TQ will automatically start.
+ * Once all the TQs are completed, Updated Overview to be shown.",,arvindn,prodadmin,,,,,,,,,AFS-5,AFS-12,AFS-7,AFS-10,AFS-9,12/Jun/20 12:43 PM;prodadmin;Revise_AllAvaialbleComponents_BBandMyLessons.JPG;http://pm2.testedgeonline.com:8080/secure/attachment/10003/Revise_AllAvaialbleComponents_BBandMyLessons.JPG,12/Jun/20 12:41 PM;prodadmin;Revise_Workflow_BBandMyLessons.JPG;http://pm2.testedgeonline.com:8080/secure/attachment/10002/Revise_Workflow_BBandMyLessons.JPG,,,,,,,,,,AFS-1,,,,[],,,0|i00007:,,,,,,,,,"{""issueId"":10001,""testStatuses"":[]}",,,,,,11/Jun/20 6:51 PM;prodadmin;Please review this story and let me know if we should aspire to provide this degree of details to the development and QA team.
+Subject Theme,AFS-60,10162,10134,Sub-task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,12/06/20 11:13,12/06/20 11:13,12/06/20 21:45,,,0,"# Title 
+ # Options side bar 
+ #",,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i000db:,,June2ndWeek,,,,,,,"{""issueId"":10162,""testStatuses"":[]}",,,,,,
+Confidence tool tip,AFS-59,10161,10134,Sub-task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,12/06/20 11:08,12/06/20 11:08,12/06/20 21:45,,,0,"Show , Hide",,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i000d3:,,June2ndWeek,,,,,,,"{""issueId"":10161,""testStatuses"":[]}",,,,,,
+Create New Task,AFS-58,10145,,Story,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,shikhab,renuv,renuv,11/06/20 15:25,11/06/20 16:05,11/06/20 16:01,,,0,"CREATE -TASK - FORM
+
+refer to the attached image 
+ # Guideline instruction must be quill editor so that equation and text formatting tool bar is enabled 
+ # on  Assign task , create new task . {color:#00875a}_[Note to developer  1. create assignment id (api call), 2. save to state . 3. Show Task Assignment component]_{color}
+ # attachment sequence is important 
+ # on preview click : show task assignment component
+
+ 
+
+after saving the form publish in following format 
+
+guidline:true 
+ instruction:""""
+ attachments:[\\{""type"":'img',path:id},\\{""type"":'pdf',path:id}]
+ duration:15 min
+ dueDt:'dd/mm/yyyy""
+ label:""TASK LABEL""",,renuv,,,,,,,,,,,,,,,11/Jun/20 3:26 PM;renuv;img1.PNG;http://pm2.testedgeonline.com:8080/secure/attachment/10000/img1.PNG,11/Jun/20 3:35 PM;renuv;img2.PNG;http://pm2.testedgeonline.com:8080/secure/attachment/10001/img2.PNG,,,,,,,,,,AFS-14,,,,[],,,0|i00052:i,,June2ndWeek,,,,,,,"{""issueId"":10145,""testStatuses"":[]}",,,,,,
+Assignment,AFS-14,10101,,Epic,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:15,11/06/20 15:25,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,ghx-label-5,,Assignments,To Do,,[],,,0|i0001z:,,,,,,,,,"{""issueId"":10101,""testStatuses"":[]}",,,,,,
+"Text area is fixed size , for excess data there will be scroll",AFS-57,10144,,Bug,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,sushantk,renuv,renuv,11/06/20 12:50,11/06/20 13:01,11/06/20 13:49,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-13,,,,[],,,0|i0005h:i,,June2ndWeek,,,,,,,"{""issueId"":10144,""testStatuses"":[]}",,,,,,
+Subjective Template,AFS-56,10143,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,santoshv,renuv,renuv,11/06/20 12:42,11/06/20 13:01,12/06/20 21:45,,,0,"# Text area with text formatting tool bar is present
+ # student can type equations
+ # Text area is fixed size , for excess data there will be scroll 
+ # Show answer to display correct answer
+ # no validation or scoring
+ # Instruction text box must be present
+
+Test Cases 
+ # Question - attachment , images 
+ # marks>1
+ # Only appear in revise
+
+Authoring tool
+ # Answer key as options , each option can have marks
+ # Heading to answer key 
+ # Question can have images 
+ # Question can have attachment 
+ # Question can have consolidated answer",,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-13,,,,[],,,0|i0006k:,,,,,,,,,"{""issueId"":10143,""testStatuses"":[]}",,,,,,
+Question Templates,AFS-13,10100,,Epic,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:11,11/06/20 12:50,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,ghx-label-2,,Quiz-Engine,To Do,,[],,,0|i0001r:,,,,,,,,,"{""issueId"":10100,""testStatuses"":[]}",,,,,,
+Images in questions and options are missing,AFS-32,10119,,Bug,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,santoshv,renuv,renuv,11/06/20 9:48,11/06/20 12:07,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-13,,,,[],,,0|i0005g:,,June2ndWeek,,,,,,,"{""issueId"":10119,""testStatuses"":[]}",,,,,,
+Sorting : Feedback not displaying for prev attempted question,AFS-33,10120,,Bug,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,sushantk,renuv,renuv,11/06/20 10:14,11/06/20 12:07,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-13,,,,[],,,0|i0005h:,,June2ndWeek,,,,,,,"{""issueId"":10120,""testStatuses"":[]}",,,,,,
+Highlights(filter) in book,AFS-51,10138,,Story,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,ashutoshs,renuv,renuv,11/06/20 11:15,11/06/20 11:33,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-15,,,,[],,,0|i0005i:h,,June2ndWeek,,,,,,,"{""issueId"":10138,""testStatuses"":[]}",,,,,,
+"Set chapter/topic  exclusion , taught in school",AFS-53,10140,,Story,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,ashutoshs,renuv,renuv,11/06/20 11:16,11/06/20 11:33,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-15,,,,[],,,0|i0005i:g,,June2ndWeek,,,,,,,"{""issueId"":10140,""testStatuses"":[]}",,,,,,
+Task Assignment- Component,AFS-55,10142,10109,Sub-task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,saiv,renuv,renuv,11/06/20 11:29,11/06/20 11:29,11/06/20 11:32,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0009j:,,June2ndWeek,,,,,,,"{""issueId"":10142,""testStatuses"":[]}",,,,,,
+View Task Assignment,AFS-22,10109,,Story,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,saiv,renuv,renuv,10/06/20 13:24,11/06/20 11:29,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-14,,,,[],,,0|i00052:,,June2ndWeek,,,,,,,"{""issueId"":10109,""testStatuses"":[]}",,,,,,
+JSON SCHEMA - MODULE setup,AFS-54,10141,10105,Sub-task,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,kailashs,renuv,renuv,11/06/20 11:28,11/06/20 11:28,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0009b:,,June2ndWeek,,,,,,,"{""issueId"":10141,""testStatuses"":[]}",,,,,,
+Assignment Card,AFS-27,10114,10105,Sub-task,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,saiv,renuv,renuv,10/06/20 13:43,11/06/20 11:28,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0004v:,,June2ndWeek,,,,,,,"{""issueId"":10114,""testStatuses"":[]}",,,,,,
+BrowseBook navigation,AFS-15,10102,,Epic,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:16,11/06/20 11:16,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,ghx-label-7,,BrowseBook-nav,To Do,,[],,,0|i00027:,,,,,,,,,"{""issueId"":10102,""testStatuses"":[]}",,,,,,
+Search chapter/topic in book,AFS-52,10139,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 11:16,11/06/20 11:16,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-15,,,,[],,,0|i00093:,,,,,,,,,"{""issueId"":10139,""testStatuses"":[]}",,,,,,
+Download ebook,AFS-50,10137,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 11:13,11/06/20 11:13,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-15,,,,[],,,0|i0008n:,,,,,,,,,"{""issueId"":10137,""testStatuses"":[]}",,,,,,
+Book,AFS-46,10133,,Story,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 11:01,11/06/20 11:11,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-15,,,,[],,,0|i0005i:9,,June2ndWeek,,,,,,,"{""issueId"":10133,""testStatuses"":[]}",,,,,,
+UI Skinning ,AFS-49,10136,10132,Sub-task,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,aditya,arvindn,arvindn,11/06/20 11:10,11/06/20 11:11,12/06/20 21:45,,,0,,,arvindn,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0008f:,,June2ndWeek,,,,,,,"{""issueId"":10136,""testStatuses"":[]}",,,,,,
+BookShelf,AFS-45,10132,,Story,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 11:01,11/06/20 11:10,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-15,,,,[],,,0|i0005i:i,,June2ndWeek,,,,,,,"{""issueId"":10132,""testStatuses"":[]}",,,,,,
+Load Resource for chapter and topic,AFS-48,10135,,Story,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 11:03,11/06/20 11:08,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-15,,,,[],,,0|i0005i:f,,June2ndWeek,,,,,,,"{""issueId"":10135,""testStatuses"":[]}",,,,,,
+Chapter Accordian,AFS-47,10134,,Task,In Progress,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 11:02,11/06/20 11:08,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-15,,,,[],,,0|i0005i:c,,June2ndWeek,,,,,,,"{""issueId"":10134,""testStatuses"":[]}",,,,,,
+Big Idea Player,AFS-44,10131,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,sushantk,renuv,renuv,11/06/20 10:49,11/06/20 10:50,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-13,,,,[],,,0|i0005i:,,June2ndWeek,,,,,,,"{""issueId"":10131,""testStatuses"":[]}",,,,,,
+Big Idea to have all  Template in horizontal layout,AFS-29,10116,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,santoshv,renuv,renuv,11/06/20 9:14,11/06/20 10:19,12/06/20 21:45,,,0,"_1. Provision to include theme_
+
+_2. Question Feedback animation_ 
+
+ ",,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-13,,,,[],,,0|i0005j:,,,,,,,,,"{""issueId"":10116,""testStatuses"":[]}",,,,,,
+Subjective,AFS-43,10130,10116,Sub-task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 10:18,11/06/20 10:18,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i00087:,,,,,,,,,"{""issueId"":10130,""testStatuses"":[]}",,,,,,
+Hotspot,AFS-42,10129,10116,Sub-task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 10:18,11/06/20 10:18,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0007z:,,,,,,,,,"{""issueId"":10129,""testStatuses"":[]}",,,,,,
+FIB-DND,AFS-41,10128,10116,Sub-task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 10:18,11/06/20 10:18,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0007r:,,,,,,,,,"{""issueId"":10128,""testStatuses"":[]}",,,,,,
+FIB,AFS-40,10127,10116,Sub-task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 10:17,11/06/20 10:17,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0007j:,,,,,,,,,"{""issueId"":10127,""testStatuses"":[]}",,,,,,
+Match,AFS-39,10126,10116,Sub-task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 10:17,11/06/20 10:17,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0007b:,,,,,,,,,"{""issueId"":10126,""testStatuses"":[]}",,,,,,
+Sorting,AFS-38,10125,10116,Sub-task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 10:17,11/06/20 10:17,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i00073:,,,,,,,,,"{""issueId"":10125,""testStatuses"":[]}",,,,,,
+Composite,AFS-37,10124,10116,Sub-task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 10:17,11/06/20 10:17,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0006v:,,,,,,,,,"{""issueId"":10124,""testStatuses"":[]}",,,,,,
+Hotspot Template,AFS-36,10123,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 10:16,11/06/20 10:16,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-13,,,,[],,,0|i0006n:,,,,,,,,,"{""issueId"":10123,""testStatuses"":[]}",,,,,,
+FIB DND Template,AFS-35,10122,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 10:16,11/06/20 10:16,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-13,,,,[],,,0|i0006f:,,,,,,,,,"{""issueId"":10122,""testStatuses"":[]}",,,,,,
+FIB -multiple blanks to be added,AFS-34,10121,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 10:16,11/06/20 10:16,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-13,,,,[],,,0|i00067:,,,,,,,,,"{""issueId"":10121,""testStatuses"":[]}",,,,,,
+SCQ,AFS-31,10118,10116,Sub-task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 9:16,11/06/20 9:16,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0005z:,,,,,,,,,"{""issueId"":10118,""testStatuses"":[]}",,,,,,
+MCQ,AFS-30,10117,10116,Sub-task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,11/06/20 9:16,11/06/20 9:16,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0005r:,,,,,,,,,"{""issueId"":10117,""testStatuses"":[]}",,,,,,
+Summary Component,AFS-11,10010,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,arvindn,arvindn,08/06/20 21:44,10/06/20 19:39,12/06/20 21:45,,,0,"Loads the summary which can be a text or an image. 
+
+1) Navigation to the next sub resource within a summary. 
+
+2) On Summary Complete, next resource to be loaded and if not present within the same TQ, the first resource from the next TQ to be shown.",,arvindn,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0001j:,,,,,,,,,"{""issueId"":10010,""testStatuses"":[]}",,,,,,
+Mark Assignment as complete,AFS-25,10112,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:24,10/06/20 15:26,10/06/20 16:57,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-14,,,,[],,,0|i00051:i,,June2ndWeek,,,,,,,"{""issueId"":10112,""testStatuses"":[]}",,,,,,
+View Digital Test Assignment ,AFS-23,10110,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:24,10/06/20 14:43,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-14,,,,[],,,0|i0005b:,,June2ndWeek,,,,,,,"{""issueId"":10110,""testStatuses"":[]}",,,,,,
+Filter assignments by,AFS-21,10108,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:21,10/06/20 14:41,12/06/20 21:45,,,0,"Filter by:
+ * Source - School/Class Assignments
+ * Completion Status
+ * Date
+ * Type - Task/Test1,2,3/Summary",,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-14,,,,[],,,0|i00051:,,June2ndWeek,,,,,,,"{""issueId"":10108,""testStatuses"":[]}",,,,,,
+View All Completed Assignments (list),AFS-20,10107,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:18,10/06/20 14:40,12/06/20 18:01,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-14,,,,[],,,0|i0004v:i,,June2ndWeek,,,,,,,"{""issueId"":10107,""testStatuses"":[]}",,,,,,
+View All Upcoming Assignments (list),AFS-19,10106,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:18,10/06/20 14:40,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-14,,,,[],,,0|i0004w:,,June2ndWeek,,,,,,,"{""issueId"":10106,""testStatuses"":[]}",,,,,,
+View All Assignments Due Today (list),AFS-18,10105,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:18,10/06/20 14:40,12/06/20 21:45,,,0,"Todays
+
+- Lesson Type, Subject (if applicable), Lesson Title, Lesson Duration, Due today, Assigned by (only in case of school), Not completed State
+
+- Lesson Type, Subject (if applicable), Lesson Title, Lesson Duration, Overdue by, Assigned by (only in case of school), Not completed State
+
+ 
+
+Upcoming (latest first)
+
+- Lesson Type, Subject (if applicable), Lesson Title, Lesson Duration, Due on mm-dd-yyyy, Assigned by (only in case of school), Not completed State
+
+ 
+
+Completed
+
+- Lesson Type, Subject (if applicable), Lesson Title, Lesson Duration, Completed on mm-dd-yyyy, Assigned by (only in case of school), Completed State",,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-14,,,,[],,,0|i00050:,,June2ndWeek,,,,,,,"{""issueId"":10105,""testStatuses"":[]}",,,,,,
+Assignment Card- DumbComponent,AFS-28,10115,,Task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:44,10/06/20 13:47,12/06/20 21:45,,,0," 
+
+*Assignment card*
+
+*INPUT*
+ # Icon based on assignment type
+ # Label
+ # Duration ,  Assignee
+ # Due date 
+ # Subject Color
+ # Status (pending , viewed , Student Complete,pending review,complete)
+
+ 
+
+*BEHAVIOR*
+ # Indicate Overdue  for today card
+ # Show date for upcoming 
+
+ 
+
+*Event*
+
+ASSIGNMENT_LOAD
+
+ ",,renuv,,,,,,,,,,AFS-18,,,,,,,,,,,,,,,,AFS-14,,,,[],,,0|i00053:,,June2ndWeek,,,,,,,"{""issueId"":10115,""testStatuses"":[]}",,,,,,
+Delete Assignment (Future),AFS-26,10113,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:38,10/06/20 13:38,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-14,,,,[],,,0|i0004n:,,,,,,,,,"{""issueId"":10113,""testStatuses"":[]}",,,,,,
+View Print Test Assignment,AFS-24,10111,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:24,10/06/20 13:35,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-14,,,,[],,,0|i00047:,,,,,,,,,"{""issueId"":10111,""testStatuses"":[]}",,,,,,
+Assignment-Task Creator,AFS-17,10104,,Epic,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:17,10/06/20 13:17,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,ghx-label-11,,Assignment-Task Creator,To Do,,[],,,0|i0002n:,,,,,,,,,"{""issueId"":10104,""testStatuses"":[]}",,,,,,
+BrowseBook create intent,AFS-16,10103,,Epic,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,renuv,renuv,10/06/20 13:16,10/06/20 13:16,12/06/20 21:45,,,0,,,renuv,,,,,,,,,,,,,,,,,,,,,,,,,ghx-label-9,,BrowseBook-Intent,To Do,,[],,,0|i0002f:,,,,,,,,,"{""issueId"":10103,""testStatuses"":[]}",,,,,,
+Header- Revise,AFS-5,10004,,Task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,arvindn,arvindn,08/06/20 21:12,08/06/20 21:59,12/06/20 21:45,,,0,"* Maximise - Text & Back Button
+ * Minimise - Back Button
+ * In Revise -> Browse Book -> No graph ring to be shown
+ * In Revise -> My Lessons -> Graph ring to be shown only on Maximise 
+ * Confirmation pop up should open once back button on header is clicked after revision has started. Pop up will contain 2 Options
+ ** Yes - User will navigate to previous inter-module screen
+ ** No - User will stay on the same screen.",,arvindn,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-1,,,,[],,,0|i0000n:,,,,,,,,,"{""issueId"":10004,""testStatuses"":[]}",,,,,,
+Lesson Intro - Revise,AFS-7,10006,,Task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,arvindn,arvindn,08/06/20 21:33,08/06/20 21:59,12/06/20 21:45,,,0,"* Lesson Overview - All TQs and Status to be shown
+ * Lesson Objective - Goals , Time and Target to be shown
+ ** Visible only from My Lesson
+ * Lesson Control in Revise:
+ ** Primary Control - Begin revision, Revise Again & Start next lesson (Buttons)
+ ** Secondary Control - Not right now & Return to My Lesson
+ ** Tertiary Control - Mark as Complete",,arvindn,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-1,,,,[],,,0|i0000s:,,,,,,,,,"{""issueId"":10006,""testStatuses"":[]}",,,,,,
+Revise from My lessons,AFS-3,10002,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,arvindn,arvindn,08/06/20 20:36,08/06/20 21:59,12/06/20 21:45,,,0,"As a student, I want to complete my lessons as planned in my study plan, so that I can achieve my overall goals for the subject.
+
++*States to be shown in Lesson Intro Screen:*+
+ * Not started - Then the Resource listing will show no progress
+ * Started but not completed - The Resource listing will show progress , if questions have been answered correctly or else there will be no progress.
+ * Completed - If all the questions are answered correctly, then the revise will be shown complete in the Summary as well as the resource listing page Behaviours
+ * Goals - Target vs Achieved count to be shown . Target will be set from Study Planner.
+ * {color:#FF0000}Time - Total time taken to complete the revision. {color}
+ * Target - How many bonus achieved. 
+
+*+Acceptance Criteria:+*
+ * On Click on goto revise button, user to navigate to Lesson Intro section. Intro Screen will consist of:
+ ** Lesson Overview
+ ** Lesson Control
+ ** Lesson Objective
+ * User can add a note while watching the video.
+ * Notes can be Created/ Edited or deleted.
+ * On click on Lesson control Component, user to navigate to Video page and watch the video. Questions to be answered whenever it's displayed.
+ * Video to show Cue point and its data embedded which was created in Notes.
+ * End of Revision , questions will be provided to the user.
+ * After the questions are completed, summary to be shown. User can restart the questions or go to next resource.
+ * On completion of 1 TQ, next TQ will automatically start.
+ * Once all the TQs are completed, Updated Overview to be shown.
+
+ ",,arvindn,,,,,,,,,,AFS-12,AFS-5,AFS-7,AFS-9,,,,,,,,,,,,,AFS-1,,,,[],,,0|i0000f:,,,,,,,,,"{""issueId"":10002,""testStatuses"":[]}",,,,,,
+Revise Video Player & Notes,AFS-9,10008,,Task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,arvindn,arvindn,08/06/20 21:38,08/06/20 21:59,12/06/20 21:45,,,0,"Loads the video using the Video Player.
+Video can be played, paused and also notes can be added at specific time, where cue point will also be shown.
+1) Creating a Note.
+2) Viewing the cue point and its note data at the created time.
+3) On the create of a Cue Point, Guidance Component to be shown and at the same time, cue note data to be shown.
+4) On video complete, next resource to be loaded and if not present within the same TQ, the first resource from the next TQ to be shown",,arvindn,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-1,,,,[],,,0|i0000t:,,,,,,,,,"{""issueId"":10008,""testStatuses"":[]}",,,,,,
+Revise Summary Component,AFS-12,10011,,Task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,arvindn,arvindn,08/06/20 21:46,08/06/20 21:59,12/06/20 21:45,,,0,"Loads the summary which can be a text or an image.
+
+1) Navigation to the next sub resource within a summary.
+
+2) On Summary Complete, next resource to be loaded and if not present within the same TQ, the first resource from the next TQ to be shown.",,arvindn,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-1,,,,[],,,0|i0000u:i,,,,,,,,,"{""issueId"":10011,""testStatuses"":[]}",,,,,,
+OverView Menu Section,AFS-10,10009,,Task,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,arvindn,arvindn,08/06/20 21:40,08/06/20 21:49,12/06/20 21:45,,,0,"Overview Menu Shows the list of different TQs and its internal resources. Besides this, it also shows the notes and the note list.
+
+ 
+
++Navigation:+
+
+1) Navigation from one resource in a TQ to the other resource between different TQs or within the same TQ. (Navigation depends on the Lock State)
+
+ 2) Viewing the Note List with different Notes, Editing and Deleting the Notes. 
+
+3) Navigating to the cue point associated with the note using the cue link, within the same TQ or different TQ
+
+ 
+
+ 
+
+ ",,arvindn,,,,,,,,,,,,,,,,,,,,,,,,,,AFS-1,,,,[],,,0|i0000u:,,,,,,,,,"{""issueId"":10009,""testStatuses"":[]}",,,,,,
+Revisse from - Browse Books & My Lessons,AFS-1,10000,,Epic,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,arvindn,arvindn,08/06/20 20:35,08/06/20 21:46,12/06/20 21:45,,,0,,,arvindn,,,,,,,,,,,,,,,,,,,,,,,,,ghx-label-1,,Revise,To Do,,[],,,0|hzzzzz:,,,,,,,,,"{""issueId"":10000,""testStatuses"":[]}",,,,,,
+Lesson Intro Screen,AFS-6,10005,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,arvindn,arvindn,08/06/20 21:15,08/06/20 21:32,12/06/20 21:45,,,0,"# Lesson Overview - All TQs and Status to be shown
+ # Lesson Objective - Goals , Time and Target to be shown
+ ** Visible only from My Lesson
+ # Lesson Control in Revise:
+ ** Primary Control - Begin revision, Revise Again & Start next lesson (Buttons)
+ ** Secondary Control - Not right now & Return to My Lesson
+ ** {color:#FF0000}Tertiary Control - Mark as Complete{color}
+ # Lesson Control in Practice:
+ ** Primary Control - Begin Practice, Practice Again & Start next lesson (Buttons)
+ ** Secondary Control - Not right now & Return to My Lesson
+ ** {color:#FF0000}Tertiary Control - Mark as Complete{color}",,arvindn,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i00013:,,,,,,,,,"{""issueId"":10005,""testStatuses"":[]}",,,,,,
+Header Component,AFS-4,10003,,Story,To Do,AFS,AFS - Frontend,software,pmoadmin,,,Medium,,,arvindn,arvindn,08/06/20 20:56,08/06/20 21:14,12/06/20 21:45,,,0,"Header Components:
+ # Revise 
+ # Practice
+ # Test 
+ # Study Plan
+ # Browse Books
+ # My Lessons",,arvindn,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,[],,,0|i0000v:,,,,,,,,,"{""issueId"":10003,""testStatuses"":[]}",,,,,,

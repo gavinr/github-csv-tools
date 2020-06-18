@@ -31,6 +31,7 @@ program
   )
   .option("-c, --exportComments", "Include comments in the export.")
   .action(function (file, options) {
+  console.log("pkp: : options", options)
     co(function* () {
       var retObject = {};
       retObject.githubUrl =

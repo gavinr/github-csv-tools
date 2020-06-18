@@ -2,7 +2,24 @@
 Import and export GitHub issues via CSV
 
 ## Usage
+issues.csv
+githubCsvTools issues.csv
+githubCsvTools issues1.csv
+githubCsvTools issues_edit.csv
+githubCsvTools test/csv_template1.csv
+githubCsvTools test/csv_template1.csv -t 4815c32543b08475c3bf2f0dc3140e93f14414ef -userOrOrganization mail2lulu
 
+{
+    token:'4815c32543b08475c3bf2f0dc3140e93f14414ef',
+    userOrOrganization:'mail2lulu',
+    repo:'deploy-angular'
+}
+
+var gitHubData = {
+  token: 'fcf7450144607c6b923bfc9f3fd6cd8062d53e83'
+  user: 'classedge',
+  repo: 'nx-afs',
+};
 
 Prerequisite: [Install Node.js](https://nodejs.org/en/), then run this to install:
 
