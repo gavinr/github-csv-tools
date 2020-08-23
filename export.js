@@ -47,11 +47,39 @@ const getFullCommentData = async (octokit, values, data) => {
   return fullComments;
 };
 
+const writeFile = async (data, fileName = false) => {
+  return new Promise((resolve, reject) => {
+    converter.json2csv(data, (err, csvString) => {
+      if (err) {
+        reject(new Error("error converting!"));
+      }
+
+      if (!fileName) {
+        const now = new Date();
+        fileName = `${now.getFullYear()}-${twoPadNumber(
+          now.getMonth() + 1
+        )}-${twoPadNumber(now.getDate())}-${twoPadNumber(
+          now.getHours()
+        )}-${twoPadNumber(now.getMinutes())}-${twoPadNumber(
+          now.getSeconds()
+        )}-issues.csv`;
+      }
+      fs.writeFile(fileName, csvString, "utf8", function (err) {
+        if (err) {
+          reject(new Error("error converting!"));
+        } else {
+          resolve(fileName);
+        }
+      });
+    });
+  });
+};
+
 const twoPadNumber = (number) => {
   return String(number).padStart(2, "0");
 };
 
-const exportIssues = (octokit, values, includeComments = false) => {
+const exportIssues = (octokit, values) => {
   // Getting all the issues:
   const options = octokit.issues.listForRepo.endpoint.merge({
     owner: values.userOrOrganization,
@@ -113,36 +141,20 @@ const exportIssues = (octokit, values, includeComments = false) => {
         csvData = await getFullCommentData(octokit, values, data);
       }
 
-      converter.json2csv(csvData, (err, csvString) => {
-        if (err) {
-          console.error("error converting!");
+      writeFile(csvData, values.exportFileName).then(
+        (fileName) => {
+          console.log(`Success! check ${fileName}`);
+          console.log(
+            "❤ ❗ If this project has provided you value, please ⭐ star the repo to show your support: ➡ https://github.com/gavinr/github-csv-tools"
+          );
+          process.exit(0);
+        },
+        (err) => {
+          console.log("Error writing the file. Please try again.");
+          console.error(err);
           process.exit(0);
         }
-        // console.log("csvString:", csvString);
-        const now = new Date();
-        let fileName = `${now.getFullYear()}-${twoPadNumber(
-          now.getMonth() + 1
-        )}-${twoPadNumber(now.getDate())}-${twoPadNumber(
-          now.getHours()
-        )}-${twoPadNumber(now.getMinutes())}-${twoPadNumber(
-          now.getSeconds()
-        )}-issues.csv`;
-        if (values.exportFileName) {
-          fileName = values.exportFileName;
-        }
-        fs.writeFile(fileName, csvString, "utf8", function (err) {
-          if (err) {
-            console.error("error writing csv!");
-            process.exit(0);
-          } else {
-            console.log(`Success! check ${fileName}`);
-            console.log(
-              "❤ ❗ If this project has provided you value, please ⭐ star the repo to show your support: ➡ https://github.com/gavinr/github-csv-tools"
-            );
-            process.exit(0);
-          }
-        });
-      });
+      );
     },
     (err) => {
       console.log("error", err);
