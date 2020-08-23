@@ -22,6 +22,11 @@ program
     "The GitHub token. https://github.com/settings/tokens"
   )
   .option(
+    "-o, --organization [organization]",
+    "The User or Organization slug that the repo lives under."
+  )
+  .option("-r, --repository [repository]", "The repository name (slug).")
+  .option(
     "-f, --exportFileName [export.csv]",
     "The name of the CSV you'd like to export to."
   )
@@ -49,8 +54,16 @@ program
           .map((i) => i.trim());
       }
       retObject.exportComments = options.exportComments || false;
-      retObject.userOrOrganization = yield prompt("user or organization: ");
-      retObject.repo = yield prompt("repo: ");
+
+      retObject.userOrOrganization = options.organization || "";
+      if (retObject.userOrOrganization === "") {
+        retObject.userOrOrganization = yield prompt("user or organization: ");
+      }
+
+      retObject.repo = options.repository || "";
+      if (retObject.repo === "") {
+        retObject.repo = yield prompt("repository: ");
+      }
       return retObject;
     }).then(
       function (values) {
