@@ -24,13 +24,17 @@ const getComment = async (octokit, values, issueNumber) => {
 
 // Given the full list of issues, returns back an array of all comments,
 // each with the issue data also included.
-const getFullCommentData = async (octokit, values, data) => {
+const getFullCommentData = async (octokit, values, data, verbose = false) => {
   const fullComments = [];
   for (let i = 0; i < data.length; i++) {
     const issueObject = data[i];
     fullComments.push({
       issue: issueObject,
     });
+
+    if (verbose === true) {
+      console.log("getting comments for issue #: ", issueObject.number);
+    }
     const commentsData = await getComment(octokit, values, issueObject.number);
     commentsData.forEach((comment) => {
       fullComments.push({
@@ -53,7 +57,7 @@ const writeFile = async (data, fileName = false) => {
       data,
       (err, csvString) => {
         if (err) {
-          reject(new Error("error converting!"));
+          reject(new Error("Invalid!"));
         }
 
         if (!fileName) {
@@ -68,7 +72,7 @@ const writeFile = async (data, fileName = false) => {
         }
         fs.writeFile(fileName, csvString, "utf8", function (err) {
           if (err) {
-            reject(new Error("error converting!"));
+            reject(new Error("Error writing the file."));
           } else {
             resolve(fileName);
           }
@@ -178,15 +182,28 @@ const exportIssues = (octokit, values) => {
       }
 
       // Add on comments, if requested.
-      const csvData = filteredData;
+      let csvData = filteredData;
       if (values.exportComments === true) {
-        // TODO!
-        // let csvData = filteredData;
-        // if (values.exportComments === true) {
-        //   // If we want comments, replace the data that will get pushed into
-        //   // the CSV with our full comments data:
-        //   csvData = await getFullCommentData(octokit, values, data);
-        // }
+        if (values.exportComments === true) {
+          // If we want comments, replace the data that will get pushed into
+          // the CSV with our full comments data:
+          if (
+            csvData[0] &&
+            Object.prototype.hasOwnProperty.call(csvData[0], "number")
+          ) {
+            csvData = await getFullCommentData(
+              octokit,
+              values,
+              csvData,
+              values.verbose
+            );
+          } else {
+            console.error(
+              "Error: Must include issue number when exporting comments."
+            );
+            csvData = false;
+          }
+        }
       }
 
       // write the data out to file.
