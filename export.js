@@ -49,34 +49,114 @@ const getFullCommentData = async (octokit, values, data) => {
 
 const writeFile = async (data, fileName = false) => {
   return new Promise((resolve, reject) => {
-    converter.json2csv(data, (err, csvString) => {
-      if (err) {
-        reject(new Error("error converting!"));
-      }
-
-      if (!fileName) {
-        const now = new Date();
-        fileName = `${now.getFullYear()}-${twoPadNumber(
-          now.getMonth() + 1
-        )}-${twoPadNumber(now.getDate())}-${twoPadNumber(
-          now.getHours()
-        )}-${twoPadNumber(now.getMinutes())}-${twoPadNumber(
-          now.getSeconds()
-        )}-issues.csv`;
-      }
-      fs.writeFile(fileName, csvString, "utf8", function (err) {
+    converter.json2csv(
+      data,
+      (err, csvString) => {
         if (err) {
           reject(new Error("error converting!"));
-        } else {
-          resolve(fileName);
         }
-      });
-    });
+
+        if (!fileName) {
+          const now = new Date();
+          fileName = `${now.getFullYear()}-${twoPadNumber(
+            now.getMonth() + 1
+          )}-${twoPadNumber(now.getDate())}-${twoPadNumber(
+            now.getHours()
+          )}-${twoPadNumber(now.getMinutes())}-${twoPadNumber(
+            now.getSeconds()
+          )}-issues.csv`;
+        }
+        fs.writeFile(fileName, csvString, "utf8", function (err) {
+          if (err) {
+            reject(new Error("error converting!"));
+          } else {
+            resolve(fileName);
+          }
+        });
+      },
+      {
+        emptyFieldValue: "",
+      }
+    );
   });
 };
 
 const twoPadNumber = (number) => {
   return String(number).padStart(2, "0");
+};
+
+const defaultExportColumns = (data) => {
+  return data.map((issueObject) => {
+    const ret = {
+      number: issueObject.number,
+      title: issueObject.title,
+      state: issueObject.state,
+      labels: "", // will be filled in below, if it exists
+      milestone: "", // will be filled in below, if it exists
+      user: "", // will be filled in below, if it exists
+      assignee: "", // will be filled in below, if it exists
+      assignees: "", // will be filled in below, if it exists
+      created_at: issueObject.created_at,
+      updated_at: issueObject.updated_at,
+      closed_at: issueObject.closed_at !== null ? issueObject.closed_at : "",
+      body: issueObject.body,
+    };
+    if (issueObject.user) {
+      ret.user = issueObject.user.login;
+    }
+    if (issueObject.labels) {
+      ret.labels = issueObject.labels
+        .map((labelObject) => {
+          return labelObject.name;
+        })
+        .join(",");
+    }
+    if (issueObject.assignee && issueObject.assignee.login) {
+      ret.assignee = issueObject.assignee.login;
+    }
+    if (issueObject.assignees && issueObject.assignees.length > 0) {
+      ret.assignees = issueObject.assignees
+        .map((assigneeObject) => {
+          return assigneeObject.login;
+        })
+        .join(",");
+    }
+    if (issueObject.milestone && issueObject.milestone.title) {
+      ret.milestone = issueObject.milestone.title;
+    }
+    return ret;
+  });
+};
+
+const getDataAttribute = (issueObject, attribute) => {
+  if (attribute.indexOf(".") > 0) {
+    const parts = attribute.split(".");
+    let currentObject = issueObject;
+    parts.forEach((part) => {
+      if (
+        currentObject &&
+        currentObject !== "" &&
+        Object.prototype.hasOwnProperty.call(currentObject, part)
+      ) {
+        currentObject = currentObject[part];
+      } else {
+        currentObject = "";
+      }
+    });
+    return currentObject;
+  } else {
+    return issueObject[attribute];
+  }
+};
+
+const specificAttributeColumns = (data, attributes) => {
+  return data.map((issueObject) => {
+    const ret = {};
+    attributes.forEach((attribute) => {
+      ret[attribute] = getDataAttribute(issueObject, attribute);
+    });
+    return ret;
+  });
 };
 
 const exportIssues = (octokit, values) => {
@@ -88,59 +168,28 @@ const exportIssues = (octokit, values) => {
   });
   octokit.paginate(options).then(
     async (data) => {
-      // Customized columns:
-      data.forEach(async (issueObject) => {
-        if (issueObject.user) {
-          issueObject.user = issueObject.user.login;
-        }
-        if (issueObject.assignee) {
-          issueObject.assignee = issueObject.assignee.login;
-        }
-        if (issueObject.labels) {
-          issueObject.labels = issueObject.labels
-            .map((labelObject) => {
-              return labelObject.name;
-            })
-            .join(",");
-        }
-        if (issueObject.assignees) {
-          issueObject.assignees = issueObject.assignees
-            .map((assigneeObject) => {
-              return assigneeObject.login;
-            })
-            .join(",");
-        }
-      });
-
-      // Data from the API that we're removing:
-      const defaultColumns = values.exportAttributes || [
-        "number",
-        "title",
-        "labels",
-        "state",
-        "assignees",
-        "milestone",
-        "comments",
-        "created_at",
-        "updated_at",
-        "closed_at",
-        "body",
-      ];
-      const filteredData = data.map((issueObject) => {
-        const tempObject = {};
-        defaultColumns.forEach((propertyName) => {
-          tempObject[propertyName] = issueObject[propertyName];
-        });
-        return tempObject;
-      });
-
-      let csvData = filteredData;
-      if (values.exportComments === true) {
-        // If we want comments, replace the data that will get pushed into
-        // the CSV with our full comments data:
-        csvData = await getFullCommentData(octokit, values, data);
+      // default export - columns that are compatible to be imported into GitHub
+      let filteredData = defaultExportColumns(data);
+      if (values.exportAll) {
+        // Just pass "data", it will flatten the JSON object we got from the API and use that (lots of data!)
+        filteredData = data;
+      } else if (values.exportAttributes) {
+        filteredData = specificAttributeColumns(data, values.exportAttributes);
       }
 
+      // Add on comments, if requested.
+      const csvData = filteredData;
+      if (values.exportComments === true) {
+        // TODO!
+        // let csvData = filteredData;
+        // if (values.exportComments === true) {
+        //   // If we want comments, replace the data that will get pushed into
+        //   // the CSV with our full comments data:
+        //   csvData = await getFullCommentData(octokit, values, data);
+        // }
+      }
+
+      // write the data out to file.
       writeFile(csvData, values.exportFileName).then(
         (fileName) => {
           console.log(`Success! check ${fileName}`);
