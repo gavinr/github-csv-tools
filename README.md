@@ -28,13 +28,14 @@ githubCsvTools myFile.csv
 githubCsvTools
 ```
 
-| Option                 | Default                                                                                               | Notes                                                         |
-| ---------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| -f, --exportFileName   | YYYY-MM-DD-hh-mm-ss-issues.csv                                                                        | The name of the CSV you'd like to export to.                  |
-| -a, --exportAttributes | number, title, labels, state, assignees, milestone, comments, created_at, updated_at, closed_at, body | Comma-separated list of attributes (columns) in the export**. |
-| -c, --exportComments   | n/a                                                                                                   | Include comments in the export.                               |
+| Option                 | Default                                                                                               | Notes                                                                                                                                                                                                         |
+| ---------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -f, --exportFileName   | YYYY-MM-DD-hh-mm-ss-issues.csv                                                                        | The name of the CSV you'd like to export to.                                                                                                                                                                  |
+| -a, --exportAttributes | number, title, labels, state, assignees, milestone, comments, created_at, updated_at, closed_at, body | Comma-separated list of attributes (columns) in the export**.                                                                                                                                                 |
+| -c, --exportComments   | n/a                                                                                                   | Include comments in the export. If using in combination with `--exportAttributes`, `id` must be included.                                                                                                     |
+| -e, --exportAll        | n/a                                                                                                   | Export all possible values from the GitHub API. If not included, a subset of attributes (see `--exportAttributes` above) that are known to be compatible with GitHub *import* will be included in the export. |
 
-** List of all possible options for `exportAttributes`: `url`, `repository_url`, `labels_url`, `comments_url`, `events_url`, `html_url`, `id`, `node_id`, `number`, `title`, `user`, `labels`, `state`, `locked`, `assignee`, `assignees`, `milestone`, `comments`, `created_at`, `updated_at`, `closed_at`, `author_association`, `body` ([more info](https://developer.github.com/v3/issues/#get-an-issue))
+** List of all possible options for `exportAttributes` includes every option in the [GitHub API Export](https://developer.github.com/v3/issues/#response-4). Values in child objects can be referenced using a "dot" - for example, a user's `avatar_url` can be accessed via `user.avatar_url`.
 
 ### Tokens
 
@@ -54,6 +55,7 @@ For all actions, the tool will ask you to input a GitHub token. To obtain this t
 | -t, --token             | The GitHub token. https://github.com/settings/tokens     |
 | -o, --organization      | The User or Organization slug that the repo lives under. |
 | -r, --repository        | The repository name (slug).                              |
+| -v, --verbose           | Include additional logging information.                  |
 | -h, --help              | See all the options and help.                            |
 
 ## Development

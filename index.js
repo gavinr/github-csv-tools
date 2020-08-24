@@ -35,6 +35,7 @@ program
     "Comma-separated list of attributes (columns) in the export."
   )
   .option("-c, --exportComments", "Include comments in the export.")
+  .option("-e, --exportAll", "Include all data in the export.")
   .action(function (file, options) {
     co(function* () {
       var retObject = {};
@@ -54,6 +55,7 @@ program
           .map((i) => i.trim());
       }
       retObject.exportComments = options.exportComments || false;
+      retObject.exportAll = options.exportAll || false;
 
       retObject.userOrOrganization = options.organization || "";
       if (retObject.userOrOrganization === "") {
