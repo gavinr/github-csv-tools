@@ -11,7 +11,7 @@ const { importFile } = require("./import.js");
 const { exportIssues } = require("./export.js");
 
 program
-  .version("1.0.3")
+  .version("2.0.0")
   .arguments("[file]")
   .option(
     "-g, --github_enterprise [https://api.github.my-company.com]",
@@ -36,6 +36,7 @@ program
   )
   .option("-c, --exportComments", "Include comments in the export.")
   .option("-e, --exportAll", "Include all data in the export.")
+  .option("-v, --verbose", "Include additional logging information.")
   .action(function (file, options) {
     co(function* () {
       var retObject = {};
@@ -56,6 +57,7 @@ program
       }
       retObject.exportComments = options.exportComments || false;
       retObject.exportAll = options.exportAll || false;
+      retObject.verbose = options.verbose || false;
 
       retObject.userOrOrganization = options.organization || "";
       if (retObject.userOrOrganization === "") {

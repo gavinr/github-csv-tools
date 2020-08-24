@@ -4,6 +4,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2020-08-23
+
+## Added
+
+- Additional options `exportAll` to export all possible issue attributes.
+- Optionally pass organization (or username) via commandline option, `--organization`.
+- Optionally pass repository name via commandline option, `--repository`.
+
+## Changed
+
+- Default fields include milestone title. 
+
 ## [1.0.3] - 2020-05-03
 
 ## Changed
@@ -62,7 +74,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Basic CSV import functionality.
 - A few basic tests
 
-[Unreleased]: https://github.com/gavinr/github-csv-tools/compare/v1.0.3...HEAD
+[Unreleased]: https://github.com/gavinr/github-csv-tools/compare/v2.0.0...HEAD
+[1.0.3]: https://github.com/gavinr/github-csv-tools/compare/v1.0.3...v2.0.0
 [1.0.3]: https://github.com/gavinr/github-csv-tools/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/gavinr/github-csv-tools/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/gavinr/github-csv-tools/compare/v1.0.0...v1.0.1
