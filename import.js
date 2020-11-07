@@ -16,7 +16,7 @@ const importFile = (octokit, file, values) => {
       },
       (err, csvRows) => {
         if (err) throw err;
-        var cols = csvRows[0];
+        var cols = csvRows[0].map(col => col.toLowerCase());
         csvRows.shift();
 
         // get indexes of the fields we need
