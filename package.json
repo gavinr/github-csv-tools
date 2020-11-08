@@ -1,6 +1,6 @@
 {
   "name": "github-csv-tools",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Tools to import and export, via CSV, from GitHub.",
   "main": "index.js",
   "scripts": {
