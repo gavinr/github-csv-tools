@@ -10,6 +10,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Importing: Columns will work if not all lowercase. Thank you @typememo ! [#33](https://github.com/gavinr/github-csv-tools/pull/33)
 
+## Changed
+
+- Updated dependencies
+
 ## [2.0.0] - 2020-08-23
 
 ## Added
