@@ -37,6 +37,7 @@ program
   .option("-c, --exportComments", "Include comments in the export.")
   .option("-e, --exportAll", "Include all data in the export.")
   .option("-v, --verbose", "Include additional logging information.")
+  .option("-s, --exportState [exportState]", "Limit the set of issues exported by specifying 'open' or 'closed' issues - defaults to 'all'")
   .action(function (file, options) {
     co(function* () {
       var retObject = {};
@@ -68,6 +69,7 @@ program
       if (retObject.repo === "") {
         retObject.repo = yield prompt("repository: ");
       }
+      retObject.state = options.exportState || "all";
       return retObject;
     }).then(
       function (values) {
