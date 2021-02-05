@@ -34,7 +34,7 @@ githubCsvTools
 | -a, --exportAttributes | number, title, labels, state, assignees, milestone, comments, created_at, updated_at, closed_at, body | Comma-separated list of attributes (columns) in the export**.                                                                                                                                                 |
 | -c, --exportComments   | n/a                                                                                                   | Include comments in the export. If using in combination with `--exportAttributes`, `id` must be included.                                                                                                     |
 | -e, --exportAll        | n/a                                                                                                   | Export all possible values from the GitHub API. If not included, a subset of attributes (see `--exportAttributes` above) that are known to be compatible with GitHub *import* will be included in the export. |
-| -s, --exportState      | all                                                                                                   | Narrow the issues exported based on the specified state: 'open', 'closed', or 'all'. |
+| -s, --exportState      | all                                                                                                   | Narrow the issues exported based on the specified state: 'open', 'closed', or 'all'.  |
 
 ** List of all possible options for `exportAttributes` includes every option in the [GitHub API Export](https://developer.github.com/v3/issues/#response-4). Values in child objects can be referenced using a "dot" - for example, a user's `avatar_url` can be accessed via `user.avatar_url`.
 
