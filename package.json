@@ -1,10 +1,11 @@
 {
   "name": "github-csv-tools",
-  "version": "2.1.0",
+  "version": "0.0.0-development",
   "description": "Tools to import and export, via CSV, from GitHub.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/eslint *.js"
+    "test": "./node_modules/.bin/eslint *.js",
+    "semantic-release": "semantic-release"
   },
   "bin": {
     "githubCsvTools": "./index.js"
@@ -42,5 +43,17 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.2",
     "semantic-release": "^17.3.7"
+  },
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ]
   }
 }
