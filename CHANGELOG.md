@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/gavinr/github-csv-tools/compare/v3.1.0...v3.1.1) (2021-02-08)
+
+
+### Bug Fixes
+
+* **semantic-release:** re-run release to fix github release ([0d352df](https://github.com/gavinr/github-csv-tools/commit/0d352dfe2e8b57ddc8ccfb25c6984d164ba9d5f4))
+
 # [3.1.0](https://github.com/gavinr/github-csv-tools/compare/v3.0.0...v3.1.0) (2021-02-08)
 
 
