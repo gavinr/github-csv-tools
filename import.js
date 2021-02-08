@@ -21,7 +21,7 @@ const importFile = (octokit, file, values) => {
 
         // get indexes of the fields we need
         var titleIndex = cols.indexOf("title");
-        var bodyIndex = cols.indexOf("description");
+        var bodyIndex = cols.indexOf("body");
         var labelsIndex = cols.indexOf("labels");
         var milestoneIndex = cols.indexOf("milestone");
         var assigneeIndex = cols.indexOf("assignee");

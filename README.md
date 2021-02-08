@@ -16,7 +16,7 @@ Instructions for exporting or importing:
 
 ### To Import Issues
 
-Currently imports title, description, labels, status (closed or open) and milestones.
+Currently imports title, body, labels, status (closed or open) and milestones.
 
 ```
 githubCsvTools myFile.csv
