@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/gavinr/github-csv-tools/compare/v2.1.0...v3.0.0) (2021-02-08)
+
+
+### Features
+
+* **export:** Import with "body" instead of "description" ([e1f5126](https://github.com/gavinr/github-csv-tools/commit/e1f512694832833a792c05e5dd0c851001cc3b1f))
+
+
+### BREAKING CHANGES
+
+* **export:** Import with "body" instead of "description"
+
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
