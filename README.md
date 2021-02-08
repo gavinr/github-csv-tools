@@ -74,5 +74,3 @@ See [CHANGELOG.md](https://github.com/gavinr/github-csv-tools/blob/master/CHANGE
 - [commander](https://www.npmjs.com/package/commander)
 - [co](https://www.npmjs.com/package/co)
 - [Tim Patterson's Post on Atlassian.com](https://developer.atlassian.com/blog/2015/11/scripting-with-node/)
-
-.
