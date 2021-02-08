@@ -1,5 +1,17 @@
-# GitHub CSV Tools [![Build Status](https://travis-ci.org/gavinr/github-csv-tools.svg?branch=master)](https://travis-ci.org/gavinr/github-csv-tools)
-Import and export GitHub issues via CSV
+<h1 align="center" style="border-bottom: none;">GitHub CSV Tools</h1>
+<h3 align="center">Import and export GitHub issues via CSV</h3>
+<p align="center">
+  
+  <a href="https://github.com/gavinr/github-csv-tools/actions?query=workflow%3ATest+branch%3Amaster">
+    <img alt="Build" src="https://github.com/gavinr/github-csv-tools/workflows/Test/badge.svg">
+  </a> 
+  <a href="https://github.com/gavinr/github-csv-tools/actions?query=workflow%3ARelease+branch%3Amaster">
+    <img alt="Release" src="https://github.com/gavinr/github-csv-tools/workflows/Release/badge.svg">
+  </a> 
+  <a href="https://www.npmjs.com/package/github-csv-tools">
+    <img alt="npm latest version" src="https://img.shields.io/npm/v/github-csv-tools/latest.svg">
+  </a>
+</p>
 
 ## Usage
 
