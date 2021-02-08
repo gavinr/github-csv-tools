@@ -5,14 +5,14 @@
 
 * **semantic-release:** re-run release to fix github release ([0d352df](https://github.com/gavinr/github-csv-tools/commit/0d352dfe2e8b57ddc8ccfb25c6984d164ba9d5f4))
 
-# [3.1.0](https://github.com/gavinr/github-csv-tools/compare/v3.0.0...v3.1.0) (2021-02-08)
+## [3.1.0](https://github.com/gavinr/github-csv-tools/compare/v3.0.0...v3.1.0) (2021-02-08)
 
 
 ### Features
 
 * **ci:** re-running release via semantic-release ([80cb482](https://github.com/gavinr/github-csv-tools/commit/80cb482b886747fd672c9373340fc678997731df))
 
-# [3.0.0](https://github.com/gavinr/github-csv-tools/compare/v2.1.0...v3.0.0) (2021-02-08)
+## [3.0.0](https://github.com/gavinr/github-csv-tools/compare/v2.1.0...v3.0.0) (2021-02-08)
 
 
 ### Features
