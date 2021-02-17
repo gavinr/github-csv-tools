@@ -4,7 +4,7 @@
   "description": "Tools to import and export, via CSV, from GitHub.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/eslint *.js",
+    "test": "eslint *.js",
     "semantic-release": "semantic-release"
   },
   "bin": {
@@ -24,13 +24,13 @@
     "url": "https://gavinr.com/contribute"
   },
   "dependencies": {
-    "@octokit/plugin-throttling": "^3.3.3",
-    "@octokit/rest": "^18.0.9",
+    "@octokit/plugin-throttling": "^3.4.1",
+    "@octokit/rest": "^18.1.1",
     "co": "^4.6.0",
     "co-prompt": "^1.0.0",
     "commander": "^6.2.0",
     "csv": "^5.3.2",
-    "json-2-csv": "^3.7.8"
+    "json-2-csv": "^3.10.2"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
@@ -42,7 +42,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.2",
-    "semantic-release": "^17.3.7"
+    "semantic-release": "^17.3.9"
   },
   "release": {
     "branches": [
