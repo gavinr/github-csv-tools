@@ -1,3 +1,10 @@
+## [3.1.2](https://github.com/gavinr/github-csv-tools/compare/v3.1.1...v3.1.2) (2021-02-17)
+
+
+### Bug Fixes
+
+* **package:** Security updates for deps ([b29c664](https://github.com/gavinr/github-csv-tools/commit/b29c66476f2eb8f025be8aba11cd5e4c92525e67))
+
 ## [3.1.1](https://github.com/gavinr/github-csv-tools/compare/v3.1.0...v3.1.1) (2021-02-08)
 
 
