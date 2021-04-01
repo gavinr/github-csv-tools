@@ -42,7 +42,8 @@ githubCsvTools
 
 | Option                 | Default                                                                                               | Notes                                                                                                                                                                                                         |
 | ---------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -f, --exportFileName   | YYYY-MM-DD-hh-mm-ss-issues.csv                                                                        | The name of the CSV you'd like to export to.                                                                                                                                                                  |
+| -f, --exportFileName   | YYYY-MM-DD-hh-mm-ss-issues                                                                        | The name of the CSV you'd like to export to.                                                                                                                                                                  |
+| -x, --exportFileExtension | csv | The extencion of the file you wont to write now avaliable `csv` and `xlsx`|
 | -a, --exportAttributes | number, title, labels, state, assignees, milestone, comments, created_at, updated_at, closed_at, body | Comma-separated list of attributes (columns) in the export**.                                                                                                                                                 |
 | -c, --exportComments   | n/a                                                                                                   | Include comments in the export. If using in combination with `--exportAttributes`, `id` must be included.                                                                                                     |
 | -e, --exportAll        | n/a                                                                                                   | Export all possible values from the GitHub API. If not included, a subset of attributes (see `--exportAttributes` above) that are known to be compatible with GitHub *import* will be included in the export. |
@@ -86,3 +87,4 @@ See [CHANGELOG.md](https://github.com/gavinr/github-csv-tools/blob/master/CHANGE
 - [commander](https://www.npmjs.com/package/commander)
 - [co](https://www.npmjs.com/package/co)
 - [Tim Patterson's Post on Atlassian.com](https://developer.atlassian.com/blog/2015/11/scripting-with-node/)
+- [json2xls](https://www.npmjs.com/package/json2xls)

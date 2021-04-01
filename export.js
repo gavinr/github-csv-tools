@@ -1,6 +1,9 @@
 // const csv = require("csv");
 const fs = require("fs");
 const converter = require("json-2-csv");
+const json2xls = require("json2xls");
+
+const XLSX_FILE_EXTENCION = 'xlsx';
 
 // Gets a single comment
 const getComment = async (octokit, values, issueNumber) => {
@@ -51,39 +54,57 @@ const getFullCommentData = async (octokit, values, data, verbose = false) => {
   return fullComments;
 };
 
-const writeFile = async (data, fileName = false) => {
-  return new Promise((resolve, reject) => {
-    converter.json2csv(
-      data,
-      (err, csvString) => {
-        if (err) {
-          reject(new Error("Invalid!"));
-        }
+const writeFile = async (data, fileName = false, fileExtension = "csv") => {
+  return new Promise( (resolve, reject) => {
 
-        if (!fileName) {
-          const now = new Date();
-          fileName = `${now.getFullYear()}-${twoPadNumber(
-            now.getMonth() + 1
-          )}-${twoPadNumber(now.getDate())}-${twoPadNumber(
-            now.getHours()
-          )}-${twoPadNumber(now.getMinutes())}-${twoPadNumber(
-            now.getSeconds()
-          )}-issues.csv`;
+    if (!fileName) {
+      const now = new Date();
+      fileName = `${now.getFullYear()}-${twoPadNumber(
+        now.getMonth() + 1
+      )}-${twoPadNumber(now.getDate())}-${twoPadNumber(
+        now.getHours()
+      )}-${twoPadNumber(now.getMinutes())}-${twoPadNumber(
+        now.getSeconds()
+      )}-issues`;
+    }
+
+    const fileToPrint = {};
+    fileToPrint.fileName = `${fileName}.${fileExtension}`;
+
+    const writeFile = ({fileName, type, data}) => {
+      fs.writeFile(fileName, data, type, function (err) {
+        if (err) {
+          reject(new Error("Error writing the file."));
+        } else {
+          resolve(fileName);
         }
-        fs.writeFile(fileName, csvString, "utf8", function (err) {
+      });
+    }
+      
+    if (fileExtension === XLSX_FILE_EXTENCION){
+      fileToPrint.data = json2xls(data);
+      fileToPrint.type = "binary";
+      writeFile(fileToPrint);
+    }else{
+      fileToPrint.type = "utf-8";
+      converter.json2csv(
+        data,
+        (err, csvString) => {
           if (err) {
-            reject(new Error("Error writing the file."));
-          } else {
-            resolve(fileName);
+            reject(new Error("Invalid!"));
           }
-        });
-      },
-      {
-        emptyFieldValue: "",
-      }
-    );
+          fileToPrint.data = csvString;
+          writeFile(fileToPrint);          
+        },
+        {
+          emptyFieldValue: "",
+        }
+      );
+    }
+    
   });
 };
+
 
 const twoPadNumber = (number) => {
   return String(number).padStart(2, "0");
@@ -207,7 +228,7 @@ const exportIssues = (octokit, values) => {
       }
 
       // write the data out to file.
-      writeFile(csvData, values.exportFileName).then(
+      writeFile(csvData, values.exportFileName, values.exportFileExtension).then(
         (fileName) => {
           console.log(`Success! check ${fileName}`);
           console.log(
