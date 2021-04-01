@@ -4,6 +4,7 @@ const converter = require("json-2-csv");
 const json2xls = require("json2xls");
 
 const XLSX_FILE_EXTENCION = 'xlsx';
+const JSON_FILE_EXTENCION = 'json';
 
 // Gets a single comment
 const getComment = async (octokit, values, issueNumber) => {
@@ -84,6 +85,10 @@ const writeFile = async (data, fileName = false, fileExtension = "csv") => {
     if (fileExtension === XLSX_FILE_EXTENCION){
       fileToPrint.data = json2xls(data);
       fileToPrint.type = "binary";
+      writeFile(fileToPrint);
+    }else if(fileExtension === JSON_FILE_EXTENCION){
+      fileToPrint.data = JSON.stringify(data);
+      fileToPrint.type = "utf-8";
       writeFile(fileToPrint);
     }else{
       fileToPrint.type = "utf-8";
