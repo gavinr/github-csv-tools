@@ -27,9 +27,10 @@ program
   )
   .option("-r, --repository [repository]", "The repository name (slug).")
   .option(
-    "-f, --exportFileName [export.csv]",
-    "The name of the CSV you'd like to export to."
+    "-f, --exportFileName [export]",
+    "The name of the file you'd like to export to."
   )
+  .option("-x, --exportFileExtension [csv]", "The extension of the name of the file you'd like to export to.")
   .option(
     "-a, --exportAttributes [attributes]",
     "Comma-separated list of attributes (columns) in the export."
@@ -49,6 +50,7 @@ program
         );
       }
       retObject.exportFileName = options.exportFileName || false;
+      retObject.exportFileExtension = options.exportFileExtension || 'csv';
       retObject.exportAttributes = options.exportAttributes || false;
       if (retObject.exportAttributes) {
         retObject.exportAttributes = retObject.exportAttributes
