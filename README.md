@@ -60,15 +60,15 @@ For all actions, the tool will ask you to input a GitHub token. To obtain this t
 
 ## Other Options
 
-| Option                  | Notes                                                    |
-| ----------------------- | -------------------------------------------------------- |
-| -V, --version           | output the version number                                |
-| -g, --github_enterprise | Your GitHub Enterprise URL.                              |
-| -t, --token             | The GitHub token. https://github.com/settings/tokens     |
-| -o, --organization      | The User or Organization slug that the repo lives under. |
-| -r, --repository        | The repository name (slug).                              |
-| -v, --verbose           | Include additional logging information.                  |
-| -h, --help              | See all the options and help.                            |
+| Option                  | Notes                                                                         |
+| ----------------------- | ------------------------------------------------------------------------------|
+| -V, --version           | Output the version number                                                     |
+| -g, --github_enterprise | Your GitHub Enterprise URL. https://your-internal-githubenterprise.com/api/v3 |
+| -t, --token             | The GitHub token. https://github.com/settings/tokens                          |
+| -o, --organization      | The User or Organization slug that the repo lives under.                      |
+| -r, --repository        | The repository name (slug).                                                   |
+| -v, --verbose           | Include additional logging information.                                       |
+| -h, --help              | See all the options and help.                                                 |
 
 ## Development
 
