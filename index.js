@@ -39,13 +39,13 @@ program
   .option("-v, --verbose", "Include additional logging information.")
   .action(function (file, options) {
     co(function* () {
-      var retObject = {};
+      const retObject = {};
       retObject.githubUrl =
         options.github_enterprise || "https://api.github.com";
       retObject.token = options.token || "";
       if (retObject.token === "") {
         retObject.token = yield prompt(
-          "token (get from https://github.com/settings/tokens): "
+          "Token (get from https://github.com/settings/tokens): "
         );
       }
       retObject.exportFileName = options.exportFileName || false;
@@ -61,12 +61,12 @@ program
 
       retObject.userOrOrganization = options.organization || "";
       if (retObject.userOrOrganization === "") {
-        retObject.userOrOrganization = yield prompt("user or organization: ");
+        retObject.userOrOrganization = yield prompt("User or organization: ");
       }
 
       retObject.repo = options.repository || "";
       if (retObject.repo === "") {
-        retObject.repo = yield prompt("repository: ");
+        retObject.repo = yield prompt("Repository: ");
       }
       return retObject;
     }).then(

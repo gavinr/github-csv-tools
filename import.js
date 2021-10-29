@@ -16,23 +16,23 @@ const importFile = (octokit, file, values) => {
       },
       (err, csvRows) => {
         if (err) throw err;
-        var cols = csvRows[0].map(col => col.toLowerCase());
+        const cols = csvRows[0].map(col => col.toLowerCase());
         csvRows.shift();
 
         // get indexes of the fields we need
-        var titleIndex = cols.indexOf("title");
-        var bodyIndex = cols.indexOf("body");
-        var labelsIndex = cols.indexOf("labels");
-        var milestoneIndex = cols.indexOf("milestone");
-        var assigneeIndex = cols.indexOf("assignee");
-        var stateIndex = cols.indexOf("state");
+        const titleIndex = cols.indexOf("title");
+        const bodyIndex = cols.indexOf("body");
+        const labelsIndex = cols.indexOf("labels");
+        const milestoneIndex = cols.indexOf("milestone");
+        const assigneeIndex = cols.indexOf("assignee");
+        const stateIndex = cols.indexOf("state");
 
         if (titleIndex === -1) {
           console.error("Title required by GitHub, but not found in CSV.");
           process.exit(1);
         }
         const createPromises = csvRows.map((row) => {
-          var sendObj = {
+          const sendObj = {
             owner: values.userOrOrganization,
             repo: values.repo,
             title: row[titleIndex],
