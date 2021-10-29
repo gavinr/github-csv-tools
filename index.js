@@ -6,12 +6,11 @@ const co = require("co");
 const prompt = require("co-prompt");
 const { Octokit } = require("@octokit/rest");
 const { throttling } = require("@octokit/plugin-throttling");
-
 const { importFile } = require("./import.js");
 const { exportIssues } = require("./export.js");
 
 program
-  .version("2.0.0")
+  .version(require('./package.json').version)
   .arguments("[file]")
   .option(
     "-g, --github_enterprise [https://api.github.my-company.com]",
