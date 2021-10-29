@@ -1,3 +1,10 @@
+## [3.1.3](https://github.com/gavinr/github-csv-tools/compare/v3.1.2...v3.1.3) (2021-10-29)
+
+
+### Bug Fixes
+
+* **version:** show proper version number in cli ([f89db20](https://github.com/gavinr/github-csv-tools/commit/f89db208c9bad2fbf555ceac0ab695b4174f77f2))
+
 ## [3.1.2](https://github.com/gavinr/github-csv-tools/compare/v3.1.1...v3.1.2) (2021-02-17)
 
 
