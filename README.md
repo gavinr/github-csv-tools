@@ -1,5 +1,7 @@
-<h1 align="center" style="border-bottom: none;">GitHub CSV Tools</h1>
+<div align="center"><img src="https://github.com/gavinr/github-csv-tools/blob/master/banner.png?raw=true" alt="GitHub CSV Tools banner" title="GitHub CSV Tools" />
 <h3 align="center">Import and export GitHub issues via CSV</h3>
+</div>
+
 <p align="center">
   
   <a href="https://github.com/gavinr/github-csv-tools/actions?query=workflow%3ATest+branch%3Amaster">
