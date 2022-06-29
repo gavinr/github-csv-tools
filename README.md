@@ -13,6 +13,9 @@
   <a href="https://www.npmjs.com/package/github-csv-tools">
     <img alt="npm latest version" src="https://img.shields.io/npm/v/github-csv-tools/latest.svg">
   </a>
+  <a href="https://repoio.com">
+    <img alt="npm latest version" src="https://img.shields.io/badge/hosted-repoio.com-orange">
+  </a>
 </p>
 
 ## Usage
@@ -80,6 +83,10 @@ For all actions, the tool will ask you to input a GitHub token. To obtain this t
 ## Changelog
 
 See [CHANGELOG.md](https://github.com/gavinr/github-csv-tools/blob/master/CHANGELOG.md)
+
+## Hosted version [![](https://img.shields.io/badge/hosted-repoio.com-orange)](https://repoio.com)
+
+This software can be used without download/install by going to [repoio.com](https://repoio.com).
 
 ## Thanks
 
