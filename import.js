@@ -33,37 +33,35 @@ const importFile = (octokit, file, values) => {
         }
         const createPromises = csvRows.map((row) => {
           const sendObj = {
-            owner: values.userOrOrganization,
-            repo: values.repo,
-            title: row[titleIndex],
+            issue : {}
           };
 
+          sendObj.issue.title = row[titleIndex];
+
           // if we have a body column, pass that.
-          if (bodyIndex > -1) {
-            sendObj.body = row[bodyIndex];
+          if (bodyIndex > -1 && row[bodyIndex] !== "") {
+            sendObj.issue.body = row[bodyIndex];
           }
 
           // if we have a labels column, pass that.
           if (labelsIndex > -1 && row[labelsIndex] !== "") {
-            sendObj.labels = row[labelsIndex].split(",");
+            sendObj.issue.labels = row[labelsIndex].split(",");
           }
 
           // if we have a milestone column, pass that.
           if (milestoneIndex > -1 && row[milestoneIndex] !== "") {
-            sendObj.milestone = row[milestoneIndex];
+            sendObj.issue.milestone = row[milestoneIndex];
           }
 
           // if we have an assignee column, pass that.
           if (assigneeIndex > -1 && row[assigneeIndex] !== "") {
-            sendObj.assignees = row[assigneeIndex].replace(/ /g, "").split(",");
+            sendObj.issue.assignee = row[assigneeIndex].replace(/ /g, "").split(",");
           }
 
-          // console.log("sendObj", sendObj);
-          let state = false;
-          if (stateIndex > -1 && row[stateIndex] === "closed") {
-            state = row[stateIndex];
+          if (stateIndex > -1 && row[stateIndex] === "Closed") {
+            sendObj.issue.closed = true;
           }
-          return createIssue(octokit, sendObj, state);
+          return createIssue(octokit, sendObj, values.userOrOrganization, values.repo);
         });
 
         Promise.all(createPromises).then(
