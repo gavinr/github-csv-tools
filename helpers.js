@@ -4,7 +4,7 @@ const createIssue = (octokit, issueInfo, organization, repository) => {
       (res) => {
         // console.log("res", res);
         if (res.status === 202) {
-            console.log("Isuue imported");
+            console.log("Issue imported");
         } else {
           // error creating the issue
           reject(res);

@@ -55,10 +55,10 @@ const importFile = (octokit, file, values) => {
 
           // if we have an assignee column, pass that.
           if (assigneeIndex > -1 && row[assigneeIndex] !== "") {
-            sendObj.issue.assignee = row[assigneeIndex].replace(/ /g, "").split(",");
+            sendObj.issue.assignee = row[assigneeIndex];
           }
 
-          if (stateIndex > -1 && row[stateIndex] === "Closed") {
+          if (stateIndex > -1 && row[stateIndex].toLowerCase() === "closed") {
             sendObj.issue.closed = true;
           }
           return createIssue(octokit, sendObj, values.userOrOrganization, values.repo);
