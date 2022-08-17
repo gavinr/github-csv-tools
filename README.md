@@ -6,10 +6,10 @@
   
   <a href="https://github.com/gavinr/github-csv-tools/actions?query=workflow%3ATest+branch%3Amaster">
     <img alt="Build" src="https://github.com/gavinr/github-csv-tools/workflows/Test/badge.svg">
-  </a> 
+  </a>
   <a href="https://github.com/gavinr/github-csv-tools/actions?query=workflow%3ARelease+branch%3Amaster">
     <img alt="Release" src="https://github.com/gavinr/github-csv-tools/workflows/Release/badge.svg">
-  </a> 
+  </a>
   <a href="https://www.npmjs.com/package/github-csv-tools">
     <img alt="npm latest version" src="https://img.shields.io/npm/v/github-csv-tools/latest.svg">
   </a>
@@ -20,10 +20,9 @@
 
 ## Usage
 
-
 Prerequisite: [Install Node.js](https://nodejs.org/en/), then run this to install:
 
-```
+```bash
 npm install -g github-csv-tools
 ```
 
@@ -35,13 +34,13 @@ Instructions for exporting or importing:
 
 Currently imports title, body, labels, status (closed or open) and milestones.
 
-```
+```bash
 githubCsvTools myFile.csv
 ```
 
 ### To Export Issues
 
-```
+```bash
 githubCsvTools
 ```
 
@@ -58,7 +57,7 @@ githubCsvTools
 
 For all actions, the tool will ask you to input a GitHub token. To obtain this token:
 
-1. Go to https://github.com/settings/tokens
+1. Go to <https://github.com/settings/tokens>
 2. Click "Generate New Token"
 3. Check on `repo`
 4. Copy/paste the token provided when the tool asks for it.
@@ -68,8 +67,8 @@ For all actions, the tool will ask you to input a GitHub token. To obtain this t
 | Option                  | Notes                                                                         |
 | ----------------------- | ------------------------------------------------------------------------------|
 | -V, --version           | Output the version number                                                     |
-| -g, --github_enterprise | Your GitHub Enterprise URL. https://your-internal-githubenterprise.com/api/v3  <br />(Reminder: do not forget the  `/api/v3` at the end)|
-| -t, --token             | The GitHub token. https://github.com/settings/tokens                          |
+| -g, --github_enterprise | Your GitHub Enterprise URL. <https://your-internal-githubenterprise.com/api/v3>  <br />(Reminder: do not forget the  `/api/v3` at the end)|
+| -t, --token             | The GitHub token. <https://github.com/settings/tokens>                          |
 | -o, --organization      | The User or Organization slug that the repo lives under. <br />Example: For `/myOrg/my-repo`, this value would be **myOrg**.                    |
 | -r, --repository        | The repository name (slug).<br />Example: For `/myOrg/my-repo`, this value would be **my-repo**.                                                 |
 | -v, --verbose           | Include additional logging information.                                       |
@@ -84,7 +83,7 @@ For all actions, the tool will ask you to input a GitHub token. To obtain this t
 
 See [CHANGELOG.md](https://github.com/gavinr/github-csv-tools/blob/master/CHANGELOG.md)
 
-## Hosted version [![](https://img.shields.io/badge/hosted-repoio.com-orange)](https://repoio.com)
+## Hosted version [![hosted shield](https://img.shields.io/badge/hosted-repoio.com-orange)](https://repoio.com)
 
 This software can be used without download/install by going to [repoio.com](https://repoio.com).
 
