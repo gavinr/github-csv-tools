@@ -1,3 +1,10 @@
+## [3.1.4](https://github.com/gavinr/github-csv-tools/compare/v3.1.3...v3.1.4) (2022-08-17)
+
+
+### Bug Fixes
+
+* **import:** rate limit fix for imports ([d9a9282](https://github.com/gavinr/github-csv-tools/commit/d9a9282ad0bff7817f07668acda5e36939fe3ffd))
+
 ## [3.1.3](https://github.com/gavinr/github-csv-tools/compare/v3.1.2...v3.1.3) (2021-10-29)
 
 
