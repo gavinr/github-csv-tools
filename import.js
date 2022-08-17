@@ -67,10 +67,10 @@ const importFile = (octokit, file, values) => {
         Promise.all(createPromises).then(
           (res) => {
             const successes = res.filter((cr) => {
-              return cr.status === 200 || cr.status === 201;
+              return cr.status === 200 || cr.status === 201 || cr.status === 202;
             });
             const fails = res.filter((cr) => {
-              return cr.status !== 200 && cr.status !== 201;
+              return cr.status !== 200 && cr.status !== 201 && cr.status !== 202;
             });
 
             console.log(
@@ -81,6 +81,7 @@ const importFile = (octokit, file, values) => {
             );
 
             if (fails.length > 0) {
+              console.error('ERROR - some of the imports have failed');
               console.log(fails);
             }
 
