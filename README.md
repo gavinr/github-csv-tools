@@ -1,4 +1,4 @@
-<div align="center"><img src="https://github.com/gavinr/github-csv-tools/blob/master/banner.png?raw=true" alt="GitHub CSV Tools banner" title="GitHub CSV Tools" />
+<div align="center"><img src="https://github.com/gavinr/github-csv-tools/blob/master/title.png?raw=true" alt="GitHub CSV Tools banner" title="GitHub CSV Tools" />
 <h3 align="center">Import and export GitHub issues via CSV</h3>
 </div>
 
