@@ -13,6 +13,7 @@ const importFile = (octokit, file, values) => {
       data,
       {
         trim: true,
+        delimiter: values.csvDelimiter,
       },
       (err, csvRows) => {
         if (err) throw err;
