@@ -74,6 +74,11 @@ For all actions, the tool will ask you to input a GitHub token. To obtain this t
 | -v, --verbose           | Include additional logging information.                                       |
 | -h, --help              | See all the options and help.                                                 |
 
+An example command to import from a csv file into github.com/myOrg/my-repo:
+```
+githubCSVTools myFile.csv -t myGitHubToken -o myOrg -r my-repo
+```
+
 ## Development
 
 1. Clone the repo.
