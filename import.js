@@ -50,7 +50,7 @@ const importFile = (octokit, file, values) => {
 
           // if we have a milestone column, pass that.
           if (milestoneIndex > -1 && row[milestoneIndex] !== "") {
-            sendObj.issue.milestone = row[milestoneIndex];
+            sendObj.issue.milestone = Number(row[milestoneIndex]);
           }
 
           // if we have an assignee column, pass that.
