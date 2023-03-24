@@ -71,6 +71,7 @@ For all actions, the tool will ask you to input a GitHub token. To obtain this t
 | -t, --token             | The GitHub token. <https://github.com/settings/tokens>                          |
 | -o, --organization      | The User or Organization slug that the repo lives under. <br />Example: For `/myOrg/my-repo`, this value would be **myOrg**.                    |
 | -r, --repository        | The repository name (slug).<br />Example: For `/myOrg/my-repo`, this value would be **my-repo**.                                                 |
+| --csvDelimiter          | The CSV delimiter character (defaults to ',')                                 |
 | -v, --verbose           | Include additional logging information.                                       |
 | -h, --help              | See all the options and help.                                                 |
 
