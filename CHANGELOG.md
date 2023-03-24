@@ -1,3 +1,10 @@
+## [3.1.5](https://github.com/gavinr/github-csv-tools/compare/v3.1.4...v3.1.5) (2023-03-24)
+
+
+### Bug Fixes
+
+* **import:** milestone ([2c205b6](https://github.com/gavinr/github-csv-tools/commit/2c205b69e1e31934d27d436d134e1822719b0a1d))
+
 ## [3.1.4](https://github.com/gavinr/github-csv-tools/compare/v3.1.3...v3.1.4) (2022-08-17)
 
 
