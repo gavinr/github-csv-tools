@@ -1,4 +1,3 @@
-// const csv = require("csv");
 const fs = require("fs");
 const converter = require("json-2-csv");
 
