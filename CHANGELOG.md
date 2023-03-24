@@ -1,3 +1,10 @@
+## [3.1.6](https://github.com/gavinr/github-csv-tools/compare/v3.1.5...v3.1.6) (2023-03-24)
+
+
+### Bug Fixes
+
+* **export:** testing auto release. ([cf9a4d9](https://github.com/gavinr/github-csv-tools/commit/cf9a4d9985c8370fb734526f8d05000a85da2bb1))
+
 ## [3.1.5](https://github.com/gavinr/github-csv-tools/compare/v3.1.4...v3.1.5) (2023-03-24)
 
 
