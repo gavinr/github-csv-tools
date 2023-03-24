@@ -10,7 +10,7 @@ const { importFile } = require("./import.js");
 const { exportIssues } = require("./export.js");
 
 program
-  .version(require('./package.json').version)
+  .version(require("./package.json").version)
   .arguments("[file]")
   .option(
     "-g, --github_enterprise [https://api.github.my-company.com]",

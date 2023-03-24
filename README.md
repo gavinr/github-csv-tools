@@ -32,7 +32,7 @@ Instructions for exporting or importing:
 
 ### To Import Issues
 
-Currently imports title, body, labels, status (closed or open) and milestones.
+Currently imports title, body, labels, status (closed or open) and milestones. See the [test](/test) folder for example input formats.
 
 ```bash
 githubCsvTools myFile.csv
