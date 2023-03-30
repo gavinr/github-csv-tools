@@ -1,3 +1,10 @@
+## [3.1.8](https://github.com/gavinr/github-csv-tools/compare/v3.1.7...v3.1.8) (2023-03-30)
+
+
+### Bug Fixes
+
+* export issue ([#102](https://github.com/gavinr/github-csv-tools/issues/102)) ([56f447a](https://github.com/gavinr/github-csv-tools/commit/56f447ad134e5647ad97208e72a3c100a7b8963e))
+
 ## [3.1.7](https://github.com/gavinr/github-csv-tools/compare/v3.1.6...v3.1.7) (2023-03-30)
 
 
