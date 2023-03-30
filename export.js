@@ -52,35 +52,34 @@ const getFullCommentData = async (octokit, values, data, verbose = false) => {
 
 const writeFile = async (data, fileName = false) => {
   return new Promise((resolve, reject) => {
-    converter.json2csv(
-      data,
-      (err, csvString) => {
-        if (err) {
+    converter
+      .json2csv(data, {
+        emptyFieldValue: "",
+      })
+      .then(
+        (csvString) => {
+          if (!fileName) {
+            const now = new Date();
+            fileName = `${now.getFullYear()}-${twoPadNumber(
+              now.getMonth() + 1
+            )}-${twoPadNumber(now.getDate())}-${twoPadNumber(
+              now.getHours()
+            )}-${twoPadNumber(now.getMinutes())}-${twoPadNumber(
+              now.getSeconds()
+            )}-issues.csv`;
+          }
+          fs.writeFile(fileName, csvString, "utf8", function (err) {
+            if (err) {
+              reject(new Error("Error writing the file."));
+            } else {
+              resolve(fileName);
+            }
+          });
+        },
+        () => {
           reject(new Error("Invalid!"));
         }
-
-        if (!fileName) {
-          const now = new Date();
-          fileName = `${now.getFullYear()}-${twoPadNumber(
-            now.getMonth() + 1
-          )}-${twoPadNumber(now.getDate())}-${twoPadNumber(
-            now.getHours()
-          )}-${twoPadNumber(now.getMinutes())}-${twoPadNumber(
-            now.getSeconds()
-          )}-issues.csv`;
-        }
-        fs.writeFile(fileName, csvString, "utf8", function (err) {
-          if (err) {
-            reject(new Error("Error writing the file."));
-          } else {
-            resolve(fileName);
-          }
-        });
-      },
-      {
-        emptyFieldValue: "",
-      }
-    );
+      );
   });
 };
 
