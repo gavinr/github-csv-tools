@@ -1,3 +1,31 @@
+## [3.1.8](https://github.com/gavinr/github-csv-tools/compare/v3.1.7...v3.1.8) (2023-03-30)
+
+
+### Bug Fixes
+
+* export issue ([#102](https://github.com/gavinr/github-csv-tools/issues/102)) ([56f447a](https://github.com/gavinr/github-csv-tools/commit/56f447ad134e5647ad97208e72a3c100a7b8963e))
+
+## [3.1.7](https://github.com/gavinr/github-csv-tools/compare/v3.1.6...v3.1.7) (2023-03-30)
+
+
+### Bug Fixes
+
+* strip the UTF8 BOM ([#85](https://github.com/gavinr/github-csv-tools/issues/85)) ([1ee65e9](https://github.com/gavinr/github-csv-tools/commit/1ee65e9bfc7dbf70fd3f2e80d2e776a7e758de24))
+
+## [3.1.6](https://github.com/gavinr/github-csv-tools/compare/v3.1.5...v3.1.6) (2023-03-24)
+
+
+### Bug Fixes
+
+* **export:** testing auto release. ([cf9a4d9](https://github.com/gavinr/github-csv-tools/commit/cf9a4d9985c8370fb734526f8d05000a85da2bb1))
+
+## [3.1.5](https://github.com/gavinr/github-csv-tools/compare/v3.1.4...v3.1.5) (2023-03-24)
+
+
+### Bug Fixes
+
+* **import:** milestone ([2c205b6](https://github.com/gavinr/github-csv-tools/commit/2c205b69e1e31934d27d436d134e1822719b0a1d))
+
 ## [3.1.4](https://github.com/gavinr/github-csv-tools/compare/v3.1.3...v3.1.4) (2022-08-17)
 
 

@@ -13,11 +13,12 @@ const importFile = (octokit, file, values) => {
       data,
       {
         trim: true,
+        bom: true,
         delimiter: values.csvDelimiter,
       },
       (err, csvRows) => {
         if (err) throw err;
-        const cols = csvRows[0].map(col => col.toLowerCase());
+        const cols = csvRows[0].map((col) => col.toLowerCase());
         csvRows.shift();
 
         // get indexes of the fields we need
@@ -34,7 +35,7 @@ const importFile = (octokit, file, values) => {
         }
         const createPromises = csvRows.map((row) => {
           const sendObj = {
-            issue : {}
+            issue: {},
           };
 
           sendObj.issue.title = row[titleIndex];
@@ -51,7 +52,7 @@ const importFile = (octokit, file, values) => {
 
           // if we have a milestone column, pass that.
           if (milestoneIndex > -1 && row[milestoneIndex] !== "") {
-            sendObj.issue.milestone = row[milestoneIndex];
+            sendObj.issue.milestone = Number(row[milestoneIndex]);
           }
 
           // if we have an assignee column, pass that.
@@ -62,16 +63,25 @@ const importFile = (octokit, file, values) => {
           if (stateIndex > -1 && row[stateIndex].toLowerCase() === "closed") {
             sendObj.issue.closed = true;
           }
-          return createIssue(octokit, sendObj, values.userOrOrganization, values.repo);
+          return createIssue(
+            octokit,
+            sendObj,
+            values.userOrOrganization,
+            values.repo
+          );
         });
 
         Promise.all(createPromises).then(
           (res) => {
             const successes = res.filter((cr) => {
-              return cr.status === 200 || cr.status === 201 || cr.status === 202;
+              return (
+                cr.status === 200 || cr.status === 201 || cr.status === 202
+              );
             });
             const fails = res.filter((cr) => {
-              return cr.status !== 200 && cr.status !== 201 && cr.status !== 202;
+              return (
+                cr.status !== 200 && cr.status !== 201 && cr.status !== 202
+              );
             });
 
             console.log(
@@ -82,7 +92,7 @@ const importFile = (octokit, file, values) => {
             );
 
             if (fails.length > 0) {
-              console.error('ERROR - some of the imports have failed');
+              console.error("ERROR - some of the imports have failed");
               console.log(fails);
             }
 
