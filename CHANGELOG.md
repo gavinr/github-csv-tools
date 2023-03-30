@@ -1,3 +1,10 @@
+## [3.1.7](https://github.com/gavinr/github-csv-tools/compare/v3.1.6...v3.1.7) (2023-03-30)
+
+
+### Bug Fixes
+
+* strip the UTF8 BOM ([#85](https://github.com/gavinr/github-csv-tools/issues/85)) ([1ee65e9](https://github.com/gavinr/github-csv-tools/commit/1ee65e9bfc7dbf70fd3f2e80d2e776a7e758de24))
+
 ## [3.1.6](https://github.com/gavinr/github-csv-tools/compare/v3.1.5...v3.1.6) (2023-03-24)
 
 
