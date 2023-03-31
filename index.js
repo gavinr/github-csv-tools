@@ -35,7 +35,10 @@ program
   )
   .option("-c, --exportComments", "Include comments in the export.")
   .option("-e, --exportAll", "Include all data in the export.")
-  .option("-v, --verbose", "Include additional logging information.")
+  .option(
+    "--csvDelimiter [csvDelimiter]",
+    "CSV delimiter character (defaults to ',')"
+  )  .option("-v, --verbose", "Include additional logging information.")
   .action(function (file, options) {
     co(function* () {
       const retObject = {};
@@ -56,6 +59,7 @@ program
       }
       retObject.exportComments = options.exportComments || false;
       retObject.exportAll = options.exportAll || false;
+      retObject.csvDelimiter = options.csvDelimiter || ',';
       retObject.verbose = options.verbose || false;
 
       retObject.userOrOrganization = options.organization || "";
