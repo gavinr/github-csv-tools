@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/gavinr/github-csv-tools/compare/v3.1.8...v3.2.0) (2023-03-31)
+
+
+### Features
+
+* option "--csvDelimiter <delimiter>" ([#86](https://github.com/gavinr/github-csv-tools/issues/86)) ([87c8616](https://github.com/gavinr/github-csv-tools/commit/87c86168e998b11136c77b75c8630c3e7fdddfa7))
+
 ## [3.1.8](https://github.com/gavinr/github-csv-tools/compare/v3.1.7...v3.1.8) (2023-03-30)
 
 
