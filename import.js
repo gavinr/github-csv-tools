@@ -41,8 +41,14 @@ const importFile = (octokit, file, values) => {
           sendObj.issue.title = row[titleIndex];
 
           // if we have a body column, pass that.
-          if (bodyIndex > -1 && row[bodyIndex] !== "") {
-            sendObj.issue.body = row[bodyIndex];
+          if (bodyIndex > -1) {
+            if (row[bodyIndex] !== "") {
+              sendObj.issue.body = row[bodyIndex];
+            }
+            else {
+              // if the body is not defined, copy the title to the body of the issue
+              sendObj.issue.body = row[titleIndex];
+            }
           }
 
           // if we have a labels column, pass that.
